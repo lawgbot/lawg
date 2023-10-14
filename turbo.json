@@ -1,0 +1,98 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"globalDependencies": [
+		".gitignore",
+		".prettierrc.json",
+		"eslint.config.js",
+		"package.json",
+		"tsconfig.eslint.json",
+		"tsconfig.json",
+		"tsup.config.ts",
+		"turbo.json",
+		"pnpm-lock.yaml",
+		"pnpm-workspace.yaml"
+	],
+	"pipeline": {
+		"build": {
+			"dependsOn": ["^build"],
+			"inputs": [
+				"src/**/*.ts",
+				"src/**/*.tsx",
+				"src/**/*.js",
+				"src/**/*.mjs",
+				"src/**/*.cjs",
+				"package.json",
+				"tsconfig.eslint.json",
+				"tsconfig.json"
+			],
+			"outputs": ["dist/**/*"],
+			"outputMode": "errors-only"
+		},
+		"@yuikigai/website#build": {
+			"dependsOn": ["^build"],
+			"env": ["NEXT_PUBLIC_LOCAL_DEV", "METADATA_BASE_URL"],
+			"dotEnv": [".env.development", ".env.development.local", ".env.local"],
+			"inputs": [
+				".env.development",
+				".env.development.local",
+				".env.local",
+				"public/**/*",
+				"src/**/*.tsx",
+				"src/**/*.ts",
+				"src/**/*.css",
+				"next.config.js",
+				"package.json",
+				"tsconfig.eslint.json",
+				"tsconfig.json"
+			],
+			"outputs": [".next/**/*", "!.next/cache/**/*"],
+			"outputMode": "full"
+		},
+		"lint": {
+			"dependsOn": ["^build"],
+			"inputs": [
+				"../../eslint.config.js",
+				"../../.prettierignore",
+				"../../.prettierrc.json",
+				"../../tsconfig.eslint.json",
+				".prettierignore",
+				".prettierrc.js",
+				"src/**/*.ts",
+				"src/**/*.tsx",
+				"src/**/*.js",
+				"src/**/*.mjs",
+				"src/**/*.cjs",
+				"src/**/*.css",
+				"next.config.js",
+				"package.json",
+				"tsconfig.eslint.json",
+				"tsconfig.json"
+			],
+			"outputs": [],
+			"outputMode": "errors-only"
+		},
+		"format": {
+			"dependsOn": ["^build"],
+			"inputs": [
+				"../../eslint.config.js",
+				"../../.prettierignore",
+				"../../.prettierrc.json",
+				"../../tsconfig.eslint.json",
+				".prettierignore",
+				".prettierrc.js",
+				"src/**/*.ts",
+				"src/**/*.tsx",
+				"src/**/*.js",
+				"src/**/*.mjs",
+				"src/**/*.cjs",
+				"src/**/*.css",
+				"next.config.js",
+				"package.json",
+				"tsconfig.eslint.json",
+				"tsconfig.json"
+			],
+			"outputs": [],
+			"outputMode": "errors-only"
+		}
+	}
+}
