@@ -1,32 +1,20 @@
 {
 	"$schema": "https://json.schemastore.org/package.json",
-	"name": "@yuikigai/framework",
-	"version": "0.0.1",
+	"name": "@yuikigai/yuikigai",
+	"version": "0.1.0",
 	"description": "",
 	"scripts": {
-		"test": "vitest run",
-		"build": "tsc --noEmit && tsup",
+		"build": "tsc -p tsconfig.json",
+		"dev": "tsx --watch src/index.ts",
+		"start": "node dist/index.js",
 		"lint": "prettier --check . && eslint --format=pretty src",
 		"format": "prettier --write . && eslint --fix --format=pretty src"
 	},
-	"exports": {
-		".": {
-			"require": {
-				"types": "./dist/index.d.ts",
-				"default": "./dist/index.js"
-			},
-			"import": {
-				"types": "./dist/index.d.mts",
-				"default": "./dist/index.mjs"
-			}
-		}
-	},
+	"type": "module",
 	"main": "./dist/index.js",
-	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
 	"directories": {
-		"lib": "src",
-		"test": "__tests__"
+		"lib": "src"
 	},
 	"files": [
 		"dist"
@@ -40,14 +28,14 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/yuikigai/yuikigai.git",
-		"directory": "packages/framework"
+		"directory": "apps/yuikigai"
 	},
 	"bugs": {
 		"url": "https://github.com/yuikigai/yuikigai/issues"
 	},
 	"dependencies": {
-		"discord-api-types": "^0.37.60",
-		"pino": "^8.16.0"
+		"@yuikigai/http": "workspace:^",
+		"@yuikigai/framework": "workspace:^"
 	},
 	"devDependencies": {
 		"@types/node": "^20.8.6",
@@ -55,10 +43,9 @@
 		"eslint-config-neon": "^0.1.57",
 		"eslint-formatter-pretty": "^5.0.0",
 		"prettier": "^3.0.3",
-		"tsup": "^7.2.0",
+		"tsx": "^3.13.0",
 		"turbo": "^1.10.15",
-		"typescript": "^5.2.2",
-		"vitest": "^0.34.6"
+		"typescript": "^5.2.2"
 	},
 	"engines": {
 		"node": ">=16.11.0"

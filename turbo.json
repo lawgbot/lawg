@@ -9,6 +9,7 @@
 		"tsconfig.json",
 		"tsup.config.ts",
 		"turbo.json",
+		"vitest.config.ts",
 		"pnpm-lock.yaml",
 		"pnpm-workspace.yaml"
 	],
@@ -47,6 +48,26 @@
 			],
 			"outputs": [".next/**/*", "!.next/cache/**/*"],
 			"outputMode": "full"
+		},
+		"test": {
+			"dependsOn": ["^build"],
+			"inputs": [
+				"../../vitest.config.ts",
+				"__tests_/**/*.ts",
+				"__tests_/**/*.js",
+				"__tests_/**/*.mjs",
+				"__tests_/**/*.cjs",
+				"src/**/*.ts",
+				"src/**/*.tsx",
+				"src/**/*.js",
+				"src/**/*.mjs",
+				"src/**/*.cjs",
+				"package.json",
+				"tsconfig.eslint.json",
+				"tsconfig.json"
+			],
+			"outputs": [],
+			"outputMode": "new-only"
 		},
 		"lint": {
 			"dependsOn": ["^build"],
