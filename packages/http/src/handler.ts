@@ -1,5 +1,6 @@
 import { fastify } from 'fastify';
 import fastifyRawBody from 'fastify-raw-body';
+import { InteractionsRoute } from './routes/interactions.js';
 
 export interface HttpHandlerOptions {
 	/**
@@ -22,6 +23,8 @@ export class HttpHandler {
 			fields: 'rawBody',
 			global: true,
 		});
+
+		await this.fastify.register(InteractionsRoute);
 
 		await this.fastify.listen({ port: this.options.port ?? 3_000 });
 	}

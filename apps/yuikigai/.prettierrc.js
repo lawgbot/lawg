@@ -1,1 +1,1 @@
-module.exports = require('../../.prettierrc.json');
+export * from '../../.prettierrc.json' assert { type: 'json' };

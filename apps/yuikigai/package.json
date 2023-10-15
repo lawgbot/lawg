@@ -34,8 +34,9 @@
 		"url": "https://github.com/yuikigai/yuikigai/issues"
 	},
 	"dependencies": {
+		"@yuikigai/framework": "workspace:^",
 		"@yuikigai/http": "workspace:^",
-		"@yuikigai/framework": "workspace:^"
+		"dotenv": "^16.3.1"
 	},
 	"devDependencies": {
 		"@types/node": "^20.8.6",

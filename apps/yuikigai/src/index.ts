@@ -1,7 +1,8 @@
+import 'dotenv/config';
 import { logger } from '@yuikigai/framework';
 import { HttpHandler } from '@yuikigai/http';
 
-const http = new HttpHandler({ port: 3_000 });
+const http = new HttpHandler({ port: Number(process.env.HTTP_PORT) });
 
 try {
 	await http.listen();
