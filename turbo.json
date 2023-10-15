@@ -114,6 +114,10 @@
 			],
 			"outputs": [],
 			"outputMode": "errors-only"
+		},
+		"dev": {
+			"cache": false,
+			"dependsOn": ["^build"]
 		}
 	}
 }

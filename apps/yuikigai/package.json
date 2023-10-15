@@ -6,6 +6,8 @@
 	"scripts": {
 		"build": "tsc -p tsconfig.json",
 		"dev": "tsx --watch src/index.ts",
+		"deploy-dev": "node dist/deploy/deploy-dev.js",
+		"deploy-global": "node dist/deploy/deploy-global.js",
 		"start": "node dist/index.js",
 		"lint": "prettier --check . && eslint --format=pretty src",
 		"format": "prettier --write . && eslint --fix --format=pretty src"
@@ -36,7 +38,9 @@
 	"dependencies": {
 		"@yuikigai/framework": "workspace:^",
 		"@yuikigai/http": "workspace:^",
-		"dotenv": "^16.3.1"
+		"dotenv": "^16.3.1",
+		"readdirp": "^3.6.0",
+		"reflect-metadata": "^0.1.13"
 	},
 	"devDependencies": {
 		"@types/node": "^20.8.6",
