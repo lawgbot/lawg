@@ -6,7 +6,7 @@ import { InteractionResponseType, InteractionType } from 'discord-api-types/v10'
 import { verify } from 'discord-verify/node';
 import type { FastifyInstance, FastifyRequest } from 'fastify';
 
-export type DiscordIncomingRequest = FastifyRequest<{
+type DiscordIncomingRequest = FastifyRequest<{
 	Body: APIInteraction;
 	Headers: {
 		'x-signature-ed25519': string;
@@ -22,8 +22,8 @@ async function verifyRequest(req: DiscordIncomingRequest) {
 	return verify(rawBody, signature, timestamp, process.env.DISCORD_PUBLIC_KEY!, crypto.webcrypto.subtle);
 }
 
-export async function InteractionsRoute(fastify: FastifyInstance) {
-	fastify.post('/discord/interactions', async (request: DiscordIncomingRequest, _reply): Promise<any> => {
+export async function InteractionsRoute(router: FastifyInstance) {
+	router.post('/interactions', async (request: DiscordIncomingRequest, _reply): Promise<any> => {
 		try {
 			if (!(await verifyRequest(request))) {
 				return {
