@@ -11,6 +11,7 @@
 		"lint:affected": "turbo run lint --filter='...[origin/main]' --concurrency=4",
 		"format": "turbo run format --concurrency=4",
 		"fmt": "turbo run format --concurrency=4",
+		"dev": "turbo run dev --concurrency=4",
 		"prepare": "is-ci || husky install"
 	},
 	"type": "module",
