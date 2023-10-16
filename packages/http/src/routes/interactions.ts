@@ -1,10 +1,10 @@
 import crypto from 'node:crypto';
 import process from 'node:process';
-import { logger } from '@yuikigai/framework';
-import type { APIInteraction } from 'discord-api-types/v10';
-import { InteractionResponseType, InteractionType } from 'discord-api-types/v10';
+import { Context, RESTClient, logger } from '@yuikigai/framework';
+import { InteractionResponseType, type APIInteraction, InteractionType } from 'discord-api-types/v10';
 import { verify } from 'discord-verify/node';
 import type { FastifyInstance, FastifyRequest } from 'fastify';
+import { handleApplicationCommand } from '../util/command.js';
 
 type DiscordIncomingRequest = FastifyRequest<{
 	Body: APIInteraction;
@@ -23,7 +23,7 @@ async function verifyRequest(req: DiscordIncomingRequest) {
 }
 
 export async function InteractionsRoute(router: FastifyInstance) {
-	router.post('/interactions', async (request: DiscordIncomingRequest, _reply): Promise<any> => {
+	router.post('/interactions', async (request: DiscordIncomingRequest, reply): Promise<any> => {
 		try {
 			if (!(await verifyRequest(request))) {
 				return {
@@ -37,10 +37,36 @@ export async function InteractionsRoute(router: FastifyInstance) {
 
 			const body = request.body;
 
-			if (body.type === InteractionType.Ping) {
-				return {
-					type: InteractionResponseType.Pong,
-				};
+			const rest = new RESTClient({
+				token: process.env.DISCORD_BOT_TOKEN!,
+			});
+			const context = new Context(rest, body, reply);
+
+			switch (body.type) {
+				case InteractionType.Ping: {
+					return {
+						type: InteractionResponseType.Pong,
+					};
+				}
+
+				case InteractionType.ApplicationCommand: {
+					await handleApplicationCommand(context);
+					break;
+				}
+
+				case InteractionType.MessageComponent:
+				case InteractionType.ApplicationCommandAutocomplete:
+				case InteractionType.ModalSubmit:
+					throw new Error('Not implemented yet');
+
+				default:
+					return {
+						success: false,
+						error: {
+							message: 'Invalid interaction type',
+							code: 'invalid_interaction_type',
+						},
+					};
 			}
 		} catch (error) {
 			logger.error('Error handling interaction', error);

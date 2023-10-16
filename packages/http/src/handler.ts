@@ -1,11 +1,13 @@
 import process from 'node:process';
 import fastifyRateLimit from '@fastify/rate-limit';
+import 'reflect-metadata';
+import { createCommands } from '@yuikigai/framework';
 import type { FastifyInstance } from 'fastify';
 import { fastify } from 'fastify';
 import metricsPlugin from 'fastify-metrics';
 import fastifyRawBody from 'fastify-raw-body';
 import { register } from 'prom-client';
-import { registerRoutes } from './routes/register.js';
+import { InteractionsRoute } from './routes/interactions';
 
 export interface HttpHandlerOptions {
 	/**
@@ -18,6 +20,8 @@ export interface HttpHandlerOptions {
 	 */
 	port?: number;
 }
+
+createCommands();
 
 export class HttpHandler {
 	public router: FastifyInstance;
@@ -43,7 +47,7 @@ export class HttpHandler {
 			defaultMetrics: { enabled: false, register },
 			endpoint: null,
 		});
-		await this.router.register(registerRoutes, { prefix: '/api' });
+		await this.router.register(InteractionsRoute);
 
 		this.router.setNotFoundHandler((_req, res) => {
 			void res.status(404).send({

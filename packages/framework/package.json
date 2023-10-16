@@ -47,14 +47,17 @@
 		"url": "https://github.com/yuikigai/yuikigai/issues"
 	},
 	"dependencies": {
+		"@yuikigai/structures": "workspace:^",
 		"discord-api-types": "^0.37.60",
-		"pino": "^8.16.0"
+		"pino": "^8.16.0",
+		"tsyringe": "^4.8.0"
 	},
 	"devDependencies": {
 		"@types/node": "^20.8.6",
 		"eslint": "^8.48.0",
 		"eslint-config-neon": "^0.1.57",
 		"eslint-formatter-pretty": "^5.0.0",
+		"fastify": "^4.24.1",
 		"prettier": "^3.0.3",
 		"tsup": "^7.2.0",
 		"turbo": "^1.10.15",

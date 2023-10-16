@@ -1,10 +1,10 @@
+import 'reflect-metadata';
 import 'dotenv/config';
-import { logger } from '@yuikigai/framework';
-import { DISCORD_API_BASE_URL } from '../util/constants.js';
+import { logger, DISCORD_API_URL } from '@yuikigai/framework';
 
 export async function deploy(data: any, dev = false) {
 	const midRoute = dev ? `/guilds/${process.env.DISCORD_DEVGUILD_ID!}` : '';
-	const route = `${DISCORD_API_BASE_URL}/applications/${process.env.DISCORD_CLIENT_ID!}${midRoute}/commands`;
+	const route = `${DISCORD_API_URL}/applications/${process.env.DISCORD_CLIENT_ID!}${midRoute}/commands`;
 
 	try {
 		const res = await fetch(route, {

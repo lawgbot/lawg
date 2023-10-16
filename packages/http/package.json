@@ -52,7 +52,9 @@
 		"fastify": "^4.24.1",
 		"fastify-metrics": "^10.3.2",
 		"fastify-raw-body": "^4.2.2",
-		"prom-client": "^15.0.0"
+		"prom-client": "^15.0.0",
+		"reflect-metadata": "^0.1.13",
+		"tsyringe": "^4.8.0"
 	},
 	"devDependencies": {
 		"@types/node": "^20.8.6",
