@@ -1,8 +1,8 @@
-import { PingCommand } from '../interactions/utility/ping.js';
+import { BotCommand, DevCommand } from '../interactions/index.js';
 import { deploy } from './deploy.js';
 
 void deploy(
-	[PingCommand].map((interaction) => ({
+	[BotCommand, DevCommand].map((interaction) => ({
 		...interaction,
 		description: `🛠️ ${interaction.description}`,
 	})),

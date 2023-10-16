@@ -1,1 +1,3 @@
-export * from './utility/ping.js';
+export * from './utility/bot.js';
+
+export * from './development/eval.js';

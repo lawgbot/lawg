@@ -11,7 +11,7 @@ createCommands();
 
 const commandFiles = readdirp(fileURLToPath(new URL('commands', import.meta.url)), {
 	fileFilter: '*.js',
-	directoryFilter: '!sub',
+	directoryFilter: '!subcommands',
 });
 
 const http = new HttpHandler({ port: Number(process.env.HTTP_PORT), logger: process.env.NODE_ENV === 'development' });
@@ -30,7 +30,9 @@ try {
 		const command = container.resolve<Command>((await dynamic()).default);
 
 		if (command.name) {
+			console.log('rodou');
 			for (const name of command.name) {
+				console.log('entrou no for do name');
 				commands.set(name.toLowerCase(), command);
 			}
 		} else {

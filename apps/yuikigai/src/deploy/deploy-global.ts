@@ -1,4 +1,4 @@
-import { PingCommand } from '../interactions/utility/ping.js';
+import { BotCommand } from '../interactions/index.js';
 import { deploy } from './deploy.js';
 
-void deploy([PingCommand]);
+void deploy([BotCommand]);

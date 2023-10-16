@@ -123,6 +123,9 @@ importers:
 
   apps/yuikigai:
     dependencies:
+      '@discordjs/formatters':
+        specifier: ^0.3.2
+        version: 0.3.2
       '@yuikigai/framework':
         specifier: workspace:^
         version: link:../../packages/framework
@@ -275,6 +278,40 @@ importers:
         version: 5.2.2
 
   packages/structures:
+    dependencies:
+      '@yuikigai/utils':
+        specifier: workspace:^
+        version: link:../utils
+      discord-api-types:
+        specifier: ^0.37.60
+        version: 0.37.60
+    devDependencies:
+      '@types/node':
+        specifier: ^20.8.6
+        version: 20.8.6
+      eslint:
+        specifier: ^8.48.0
+        version: 8.48.0
+      eslint-config-neon:
+        specifier: ^0.1.57
+        version: 0.1.57(eslint@8.48.0)(typescript@5.2.2)
+      eslint-formatter-pretty:
+        specifier: ^5.0.0
+        version: 5.0.0
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      tsup:
+        specifier: ^7.2.0
+        version: 7.2.0(typescript@5.2.2)
+      turbo:
+        specifier: ^1.10.15
+        version: 1.10.15
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+
+  packages/utils:
     dependencies:
       discord-api-types:
         specifier: ^0.37.60
@@ -502,6 +539,13 @@ packages:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
+
+  /@discordjs/formatters@0.3.2:
+    resolution: {integrity: sha512-lE++JZK8LSSDRM5nLjhuvWhGuKiXqu+JZ/DsOR89DVVia3z9fdCJVcHF2W/1Zxgq0re7kCzmAJlCMMX3tetKpA==}
+    engines: {node: '>=16.11.0'}
+    dependencies:
+      discord-api-types: 0.37.50
+    dev: false
 
   /@edge-runtime/cookies@3.4.1:
     resolution: {integrity: sha512-z27BvgPxI73CgSlxU/NAUf1Q/shnqi6cobHEowf6VuLdSjGR3NjI2Y5dZUIBbK2zOJVZbXcHsVzJjz8LklteFQ==}
@@ -2716,6 +2760,10 @@ packages:
     dependencies:
       path-type: 4.0.0
     dev: true
+
+  /discord-api-types@0.37.50:
+    resolution: {integrity: sha512-X4CDiMnDbA3s3RaUXWXmgAIbY1uxab3fqe3qwzg5XutR3wjqi7M3IkgQbsIBzpqBN2YWr/Qdv7JrFRqSgb4TFg==}
+    dev: false
 
   /discord-api-types@0.37.60:
     resolution: {integrity: sha512-5BELXTsv7becqVHrD81nZrqT4oEyXXWBwbsO/kwDDu6X3u19VV1tYDB5I5vaVAK+c1chcDeheI9zACBLm41LiQ==}

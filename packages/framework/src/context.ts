@@ -1,4 +1,4 @@
-import { User } from '@yuikigai/structures';
+import { Member, User } from '@yuikigai/structures';
 import type { APIInteraction } from 'discord-api-types/v10';
 import type { FastifyReply } from 'fastify';
 import { InteractionsAPI, WebhooksAPI } from './api/index.js';
@@ -9,6 +9,18 @@ export class Context {
 
 	public readonly webhooks: WebhooksAPI;
 
+	public readonly permittedUsers = ['847865068657836033'];
+
+	public readonly applicationId: string;
+
+	public readonly channelId: string | undefined;
+
+	public readonly guildId: string | undefined;
+
+	public readonly user: User;
+
+	public readonly member: Member;
+
 	public constructor(
 		public rest: RESTClient,
 		public context: APIInteraction,
@@ -16,9 +28,12 @@ export class Context {
 	) {
 		this.webhooks = new WebhooksAPI(rest, context);
 		this.interactions = new InteractionsAPI(response, this.webhooks);
-	}
 
-	public get user() {
-		return new User(this.context.member!.user);
+		this.applicationId = this.context.application_id;
+		this.channelId = this.context.channel?.id;
+		this.guildId = this.context.guild_id;
+
+		this.user = new User(this.context.user ?? this.context.member!.user);
+		this.member = new Member(this.context.member!);
 	}
 }
