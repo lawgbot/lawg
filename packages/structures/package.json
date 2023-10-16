@@ -45,6 +45,7 @@
 		"url": "https://github.com/yuikigai/yuikigai/issues"
 	},
 	"dependencies": {
+		"@discordjs/formatters": "^0.3.2",
 		"@yuikigai/utils": "workspace:^",
 		"discord-api-types": "^0.37.60"
 	},

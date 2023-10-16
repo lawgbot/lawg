@@ -1,13 +1,17 @@
-import type { APIInteractionResponseCallbackData, Snowflake } from 'discord-api-types/v10';
+import { Interaction } from '@yuikigai/structures';
+import type { APIInteraction, APIInteractionResponseCallbackData, Snowflake } from 'discord-api-types/v10';
 import { InteractionResponseType } from 'discord-api-types/v10';
 import type { FastifyReply } from 'fastify';
 import type { WebhooksAPI } from './webhook.js';
 
-export class InteractionsAPI {
+export class InteractionsAPI extends Interaction {
 	public constructor(
+		public readonly interaction: APIInteraction,
 		private readonly response: FastifyReply,
 		private readonly webhooks: WebhooksAPI,
-	) {}
+	) {
+		super(interaction);
+	}
 
 	/**
 	 * Replies to an interaction

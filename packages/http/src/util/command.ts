@@ -19,7 +19,7 @@ export async function handleApplicationCommand(context: Context) {
 	const args = transformApplicationInteraction(commandData.options ?? []);
 
 	if (!command) {
-		return context.interactions.replyMessage({
+		return context.interaction.replyMessage({
 			content: 'Command not found',
 			flags: 1 << 6,
 		});

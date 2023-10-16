@@ -42,6 +42,8 @@ export async function InteractionsRoute(router: FastifyInstance) {
 			});
 			const context = new Context(rest, body, reply);
 
+			console.log(context);
+
 			switch (body.type) {
 				case InteractionType.Ping: {
 					return {

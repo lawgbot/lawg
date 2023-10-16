@@ -1,3 +1,4 @@
+import { userMention } from '@discordjs/formatters';
 import type { APIGuildMember } from 'discord-api-types/v10';
 import { User } from '..';
 import { Structure } from '../Structure';
@@ -83,8 +84,12 @@ export class Member extends Structure<APIGuildMember> {
 	 * The members's partial user object
 	 */
 	public get user() {
-		const user = this[kData].user;
+		const _user = this[kData].user;
 
-		return user ? new User(user) : null;
+		return _user ? new User(_user) : null;
+	}
+
+	public override toString() {
+		return userMention(this.id);
 	}
 }

@@ -29,7 +29,7 @@
 	},
 	"devDependencies": {
 		"@types/lodash.merge": "^4.6.7",
-		"eslint": "^8.48.0",
+		"eslint": "^8.51.0",
 		"eslint-config-neon": "^0.1.57",
 		"husky": "^8.0.3",
 		"is-ci": "^3.0.1",

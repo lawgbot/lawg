@@ -1,3 +1,4 @@
+import { userMention } from '@discordjs/formatters';
 import { calculateUserDefaultAvatarIndex } from '@yuikigai/utils';
 import type { APIUser, Snowflake } from 'discord-api-types/v10';
 import { Structure } from '../Structure';
@@ -63,6 +64,13 @@ export class User extends Structure<APIUser> {
 	 */
 	public get globalName() {
 		return this[kData].global_name;
+	}
+
+	/**
+	 * The global name of this user, or their username if they don't have one
+	 */
+	public get displayName() {
+		return this.globalName ?? this.username;
 	}
 
 	/**
@@ -139,5 +147,9 @@ export class User extends Structure<APIUser> {
 	 */
 	public displayAvatarURL() {
 		return this.avatarURL() ?? this.defaultAvatarURL;
+	}
+
+	public override toString() {
+		return userMention(this.id);
 	}
 }

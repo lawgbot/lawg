@@ -1,2 +1,3 @@
-export * from './users/User.js';
-export * from './guilds/Member.js';
+export * from './guilds/index.js';
+export * from './interactions/index.js';
+export * from './users/index.js';
