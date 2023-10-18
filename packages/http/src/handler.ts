@@ -1,7 +1,7 @@
 import process from 'node:process';
 import fastifyRateLimit from '@fastify/rate-limit';
 import 'reflect-metadata';
-import { createCommands } from '@yuikigai/framework';
+import { createCommands, createRedis } from '@yuikigai/framework';
 import type { FastifyInstance } from 'fastify';
 import { fastify } from 'fastify';
 import metricsPlugin from 'fastify-metrics';
@@ -38,6 +38,7 @@ export class HttpHandler {
 	}
 
 	public async listen() {
+		await createRedis();
 		await this.router.register(fastifyRateLimit, { global: false });
 		await this.router.register(fastifyRawBody as any, {
 			fields: 'rawBody',

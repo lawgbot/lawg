@@ -184,9 +184,6 @@ importers:
 
   packages/framework:
     dependencies:
-      '@prisma/client':
-        specifier: ^5.4.2
-        version: 5.4.2(prisma@5.4.2)
       '@yuikigai/structures':
         specifier: workspace:^
         version: link:../structures
@@ -200,6 +197,9 @@ importers:
         specifier: ^4.8.0
         version: 4.8.0
     devDependencies:
+      '@prisma/client':
+        specifier: ^5.4.2
+        version: 5.4.2(prisma@5.4.2)
       '@types/node':
         specifier: ^20.8.6
         version: 20.8.6
@@ -215,6 +215,9 @@ importers:
       fastify:
         specifier: ^4.24.1
         version: 4.24.1
+      ioredis:
+        specifier: ^5.3.2
+        version: 5.3.2
       prettier:
         specifier: ^3.0.3
         version: 3.0.3
@@ -257,6 +260,9 @@ importers:
       fastify-raw-body:
         specifier: ^4.2.2
         version: 4.2.2
+      ioredis:
+        specifier: ^5.3.2
+        version: 5.3.2
       prom-client:
         specifier: ^15.0.0
         version: 15.0.0
@@ -1013,6 +1019,9 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
+  /@ioredis/commands@1.2.0:
+    resolution: {integrity: sha512-Sx1pU8EM64o2BrqNpEO1CNLtKQwyhuXuqyfH7oGKCk+1a33d2r5saW8zNwm3j6BTExtjrv2BxTgzzkMwts6vGg==}
+
   /@isaacs/cliui@8.0.2:
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
@@ -1282,15 +1291,16 @@ packages:
     dependencies:
       '@prisma/engines-version': 5.4.1-2.ac9d7041ed77bcc8a8dbd2ab6616b39013829574
       prisma: 5.4.2
-    dev: false
+    dev: true
 
   /@prisma/engines-version@5.4.1-2.ac9d7041ed77bcc8a8dbd2ab6616b39013829574:
     resolution: {integrity: sha512-wvupDL4AA1vf4TQNANg7kR7y98ITqPsk6aacfBxZKtrJKRIsWjURHkZCGcQliHdqCiW/hGreO6d6ZuSv9MhdAA==}
-    dev: false
+    dev: true
 
   /@prisma/engines@5.4.2:
     resolution: {integrity: sha512-fqeucJ3LH0e1eyFdT0zRx+oETLancu5+n4lhiYECyEz6H2RDskPJHJYHkVc0LhkU4Uv7fuEnppKU3nVKNzMh8g==}
     requiresBuild: true
+    dev: true
 
   /@radix-ui/primitive@1.0.1:
     resolution: {integrity: sha512-yQ8oGX2GVsEYMWGxcovu1uGWPCxV5BFfeeYxqPmuAzUyLT9qmaMXSAhXpb0WrspIeqYzdJpkh2vHModJPgRIaw==}
@@ -3334,6 +3344,10 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
+  /cluster-key-slot@1.1.2:
+    resolution: {integrity: sha512-RMr0FhtfXemyinomL4hrWcYJxmX6deFdCxpJzhDttxgO1+bcCnkk+9drydLVDmAMG7NE6aN/fl4F7ucU/90gAA==}
+    engines: {node: '>=0.10.0'}
+
   /code-block-writer@10.1.1:
     resolution: {integrity: sha512-67ueh2IRGst/51p0n6FvPrnRjAGHY5F8xdjkgrYE7DDzpJe6qA07RYQ9VcoUeo5ATOjSOiWpSL3SWBRRbempMw==}
     dev: true
@@ -3539,6 +3553,10 @@ packages:
   /delegates@1.0.0:
     resolution: {integrity: sha512-bd2L678uiWATM6m5Z1VzNCErI3jiGzt6HGY8OVICs40JQq/HALfbyNJmp0UDakEY4pMMaN0Ly5om/B1VI/+xfQ==}
     dev: true
+
+  /denque@2.1.0:
+    resolution: {integrity: sha512-HVQE3AAb/pxF8fQAoiqpvg9i3evqug3hoiwakOyZAwJm+6vZehbkYXZ0l4JxS+I3QxM97v5aaRNhj8v5oBhekw==}
+    engines: {node: '>=0.10'}
 
   /depd@1.1.2:
     resolution: {integrity: sha512-7emPTl6Dpo6JRXOXjLRxck+FlLRX5847cLKEn00PLAgc3g2hTZZgr+e4c2v6QpSmLeFP3n5yUo7ft6avBK/5jQ==}
@@ -5855,6 +5873,22 @@ packages:
       loose-envify: 1.4.0
     dev: false
 
+  /ioredis@5.3.2:
+    resolution: {integrity: sha512-1DKMMzlIHM02eBBVOFQ1+AolGjs6+xEcM4PDL7NqOS6szq7H9jSaEkIUH6/a5Hl241LzW6JLSiAbNvTQjUupUA==}
+    engines: {node: '>=12.22.0'}
+    dependencies:
+      '@ioredis/commands': 1.2.0
+      cluster-key-slot: 1.1.2
+      debug: 4.3.4
+      denque: 2.1.0
+      lodash.defaults: 4.2.0
+      lodash.isarguments: 3.1.0
+      redis-errors: 1.2.0
+      redis-parser: 3.0.0
+      standard-as-callback: 2.1.0
+    transitivePeerDependencies:
+      - supports-color
+
   /ipaddr.js@1.9.1:
     resolution: {integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==}
     engines: {node: '>= 0.10'}
@@ -6348,6 +6382,12 @@ packages:
     dependencies:
       p-locate: 5.0.0
     dev: true
+
+  /lodash.defaults@4.2.0:
+    resolution: {integrity: sha512-qjxPLHd3r5DnsdGacqOMU6pb/avJzdh9tFX2ymgoZE27BmjXrNy/y4LoaiTeAb+O3gL8AfpJGtqfX/ae2leYYQ==}
+
+  /lodash.isarguments@3.1.0:
+    resolution: {integrity: sha512-chi4NHZlZqZD18a0imDHnZPrDeBbTtVN7GXMwuGdRH9qotxAjYs3aVLKc7zNOG9eddR5Ksd8rvFEBc9SsggPpg==}
 
   /lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
@@ -7593,6 +7633,7 @@ packages:
     requiresBuild: true
     dependencies:
       '@prisma/engines': 5.4.2
+    dev: true
 
   /proc-log@3.0.0:
     resolution: {integrity: sha512-++Vn7NS4Xf9NacaU9Xq3URUuqZETPsf8L4j5/ckhaRYsfPeRyzGw+iDjFhV/Jr3uNmTvvddEJFWh5R1gRgUH8A==}
@@ -7829,6 +7870,16 @@ packages:
   /real-require@0.2.0:
     resolution: {integrity: sha512-57frrGM/OCTLqLOAh0mhVA9VBMHd+9U7Zb2THMGdBUoZVOtGbJzjxsYGDJ3A9AYYCP4hn6y1TVbaOfzWtm5GFg==}
     engines: {node: '>= 12.13.0'}
+
+  /redis-errors@1.2.0:
+    resolution: {integrity: sha512-1qny3OExCf0UvUV/5wpYKf2YwPcOqXzkwKKSmKHiE6ZMQs5heeE/c8eXK+PNllPvmjgAbfnsbpkGZWy8cBpn9w==}
+    engines: {node: '>=4'}
+
+  /redis-parser@3.0.0:
+    resolution: {integrity: sha512-DJnGAeenTdpMEH6uAJRK/uiyEIH9WVsUmoLwzudwGJUwZPp80PDBWPHXSAGNPwNvIXAbe7MSUB1zQFugFml66A==}
+    engines: {node: '>=4'}
+    dependencies:
+      redis-errors: 1.2.0
 
   /reflect-metadata@0.1.13:
     resolution: {integrity: sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==}
@@ -8216,6 +8267,9 @@ packages:
   /stackback@0.0.2:
     resolution: {integrity: sha512-1XMJE5fQo1jGH6Y/7ebnwPOBEkIEnT4QF32d5R1+VXdXveM0IBMJt8zfaxX1P3QhVwrYe+576+jkANtSS2mBbw==}
     dev: true
+
+  /standard-as-callback@2.1.0:
+    resolution: {integrity: sha512-qoRRSyROncaz1z0mvYqIE4lCd9p2R90i6GxW3uZv5ucSu8tU7B5HXUP1gG8pVZsYNVaXjk8ClXHPttLyxAL48A==}
 
   /stat-mode@0.3.0:
     resolution: {integrity: sha512-QjMLR0A3WwFY2aZdV0okfFEJB5TRjkggXZjxP3A1RsWsNHNu3YPv8btmtc6iCFZ0Rul3FE93OYogvhOUClU+ng==}
