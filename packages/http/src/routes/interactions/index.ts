@@ -1,26 +1,16 @@
-import crypto from 'node:crypto';
 import process from 'node:process';
 import { Context, RESTClient, logger } from '@yuikigai/framework';
 import { InteractionResponseType, type APIInteraction, InteractionType } from 'discord-api-types/v10';
-import { verify } from 'discord-verify/node';
 import type { FastifyInstance, FastifyRequest } from 'fastify';
-import { handleApplicationCommand } from '../util/command.js';
+import { handleApplicationCommand, verifyRequest } from '../../util/command.js';
 
-type DiscordIncomingRequest = FastifyRequest<{
+export type DiscordIncomingRequest = FastifyRequest<{
 	Body: APIInteraction;
 	Headers: {
 		'x-signature-ed25519': string;
 		'x-signature-timestamp': string;
 	};
 }>;
-
-async function verifyRequest(req: DiscordIncomingRequest) {
-	const signature = req.headers['x-signature-ed25519'];
-	const timestamp = req.headers['x-signature-timestamp'];
-	const rawBody = JSON.stringify(req.body);
-
-	return verify(rawBody, signature, timestamp, process.env.DISCORD_PUBLIC_KEY!, crypto.webcrypto.subtle);
-}
 
 export async function InteractionsRoute(router: FastifyInstance) {
 	router.post('/interactions', async (request: DiscordIncomingRequest, reply): Promise<any> => {
@@ -41,8 +31,6 @@ export async function InteractionsRoute(router: FastifyInstance) {
 				token: process.env.DISCORD_BOT_TOKEN!,
 			});
 			const context = new Context(rest, body, reply);
-
-			console.log(context);
 
 			switch (body.type) {
 				case InteractionType.Ping: {

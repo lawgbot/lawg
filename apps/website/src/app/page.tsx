@@ -1,12 +1,7 @@
-import { Button } from '~/components/ui/button';
-import { GITHUB_ORG_URL } from '~/util/constants';
-
 export default function Page() {
 	return (
-		<div className="flex place-content-center place-items-center w-screen h-screen">
-			<a href={GITHUB_ORG_URL} target="_blank" rel="noopener noreferrer">
-				<Button>GitHub</Button>
-			</a>
-		</div>
+		<section id="home" className="flex min-h-screen w-full flex-col">
+			<div className="container flex flex-col items-center justify-center gap-8 py-8 md:flex-row" />
+		</section>
 	);
 }

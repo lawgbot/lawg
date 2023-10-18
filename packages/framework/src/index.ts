@@ -11,3 +11,4 @@ export * from './logger.js';
 export * from './interaction.js';
 
 export { container } from 'tsyringe';
+export { PrismaClient } from '@prisma/client';

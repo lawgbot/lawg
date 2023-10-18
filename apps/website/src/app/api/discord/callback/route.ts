@@ -21,6 +21,7 @@ export async function GET(req: NextRequest) {
 		},
 		body: params,
 	});
+
 	const json = await data.json();
 
 	cookieStore.set('yuikigai-auth-session', json.access_token, {

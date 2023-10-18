@@ -79,12 +79,13 @@
 }
 
 @layer base {
+	html {
+		font-family: var(--font-inter);
+	}
 	* {
 		@apply border-border;
 	}
 	body {
 		@apply bg-background text-foreground;
-		font-family: var(--font-inter);
-		min-height: 100vh;
 	}
 }

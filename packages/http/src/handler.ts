@@ -7,7 +7,7 @@ import { fastify } from 'fastify';
 import metricsPlugin from 'fastify-metrics';
 import fastifyRawBody from 'fastify-raw-body';
 import { register } from 'prom-client';
-import { InteractionsRoute } from './routes/interactions';
+import { registerRoutes } from './routes/register';
 
 export interface HttpHandlerOptions {
 	/**
@@ -47,7 +47,7 @@ export class HttpHandler {
 			defaultMetrics: { enabled: false, register },
 			endpoint: null,
 		});
-		await this.router.register(InteractionsRoute);
+		await this.router.register(registerRoutes);
 
 		this.router.setNotFoundHandler((_req, res) => {
 			void res.status(404).send({

@@ -1,6 +1,10 @@
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import type { PropsWithChildren } from 'react';
+import Footer from '~/components/footer';
+import Header from '~/components/header';
+import { MobileNav } from '~/components/mobile-nav';
+import { cn } from '~/lib/util';
 import { DESCRIPTION } from '~/util/constants';
 import { inter } from '~/util/fonts';
 import { Providers } from './providers';
@@ -41,9 +45,13 @@ export const metadata: Metadata = {
 	},
 	manifest: '/site.webmanifest',
 	themeColor: [
-		{ media: '(prefers-color-scheme: light)', color: '#f1f5f9' },
 		{ media: '(prefers-color-scheme: dark)', color: '#18181b' },
+		{
+			media: '(prefers-color-scheme: light)',
+			color: '#ffffff',
+		},
 	],
+	robots: 'index, follow',
 	colorScheme: 'light dark',
 	appleWebApp: {
 		title: 'yuikigai',
@@ -66,9 +74,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: PropsWithChildren) {
 	return (
-		<html className={`${inter.variable}`} lang="en" suppressHydrationWarning>
-			<body className="bg-slate-200 dark:text-slate-100 dark:bg-zinc-900">
-				<Providers>{children}</Providers>
+		<html className={cn(inter.variable)} lang="en" suppressHydrationWarning>
+			<head />
+			<body className="scroll-smoth bg-background antialiased font-inter">
+				<Providers>
+					<Header />
+
+					<main>
+						<div className="max-w-none">{children}</div>
+					</main>
+
+					<Footer />
+					<MobileNav />
+				</Providers>
 				<Analytics />
 			</body>
 		</html>

@@ -3,9 +3,19 @@ import 'reflect-metadata';
 
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import type { Command } from '@yuikigai/framework';
-import { commandInfo, container, createCommands, dynamicImport, kCommands, logger } from '@yuikigai/framework';
+import {
+	commandInfo,
+	container,
+	createCommands,
+	dynamicImport,
+	kCommands,
+	logger,
+	createPrisma,
+} from '@yuikigai/framework';
 import { HttpHandler } from '@yuikigai/http';
 import readdirp from 'readdirp';
+
+await createPrisma();
 
 createCommands();
 
@@ -30,9 +40,7 @@ try {
 		const command = container.resolve<Command>((await dynamic()).default);
 
 		if (command.name) {
-			console.log('rodou');
 			for (const name of command.name) {
-				console.log('entrou no for do name');
 				commands.set(name.toLowerCase(), command);
 			}
 		} else {
@@ -44,5 +52,6 @@ try {
 	logger.info(`Listening server on http://127.0.0.1:${process.env.HTTP_PORT}`);
 } catch (error_) {
 	const error = error_ as Error;
+	console.log(error);
 	logger.error(error, error.message);
 }
