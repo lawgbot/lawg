@@ -1,12 +1,9 @@
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import type { PropsWithChildren } from 'react';
-import Footer from '~/components/footer';
-import Header from '~/components/header';
-import { MobileNav } from '~/components/mobile-nav';
 import { cn } from '~/lib/util';
 import { DESCRIPTION } from '~/util/constants';
-import { inter } from '~/util/fonts';
+import { rubik } from '~/util/fonts';
 import { Providers } from './providers';
 
 import '~/styles/main.css';
@@ -15,7 +12,10 @@ export const metadata: Metadata = {
 	metadataBase: new URL(
 		process.env.METADATA_BASE_URL ? process.env.METADATA_BASE_URL : `http://localhost:${process.env.PORT ?? 3_000}`,
 	),
-	title: 'yuikigai',
+	title: {
+		default: 'yuikigai',
+		template: '%s | yuikigai',
+	},
 	description: DESCRIPTION,
 	viewport: {
 		minimumScale: 1,
@@ -44,12 +44,19 @@ export const metadata: Metadata = {
 		],
 	},
 	manifest: '/site.webmanifest',
+	authors: [
+		{
+			name: 'niskii',
+			url: 'https://niskii.dev',
+		},
+	],
+	creator: 'niskii',
 	themeColor: [
-		{ media: '(prefers-color-scheme: dark)', color: '#18181b' },
 		{
 			media: '(prefers-color-scheme: light)',
-			color: '#ffffff',
+			color: 'light',
 		},
+		{ media: '(prefers-color-scheme: dark)', color: 'black' },
 	],
 	robots: 'index, follow',
 	colorScheme: 'light dark',
@@ -61,11 +68,14 @@ export const metadata: Metadata = {
 		siteName: 'yuikigai',
 		type: 'website',
 		title: 'yuikigai',
+		locale: 'en_US',
 		description: DESCRIPTION,
 	},
 	twitter: {
 		card: 'summary_large_image',
 		creator: '@mldyxniskii',
+		title: 'yuikigai',
+		description: DESCRIPTION,
 	},
 	other: {
 		'msapplication-TileColor': '#18181b',
@@ -74,19 +84,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: PropsWithChildren) {
 	return (
-		<html className={cn(inter.variable)} lang="en" suppressHydrationWarning>
+		<html className={cn(rubik.variable)} lang="en" suppressHydrationWarning>
 			<head />
-			<body className="scroll-smoth bg-background antialiased font-inter">
-				<Providers>
-					<Header />
-
-					<main>
-						<div className="max-w-none">{children}</div>
-					</main>
-
-					<Footer />
-					<MobileNav />
-				</Providers>
+			<body className="scroll-smooth bg-background antialiased font-rubik">
+				<Providers>{children}</Providers>
 				<Analytics />
 			</body>
 		</html>

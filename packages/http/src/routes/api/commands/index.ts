@@ -4,6 +4,7 @@ import type { APIApplicationCommand } from 'discord-api-types/v10';
 import type { FastifyInstance } from 'fastify';
 import type { Redis } from 'ioredis';
 import { rateLimitConfig } from '../../../util/ratelimiter';
+import { internalError } from '../../../util/response';
 
 const CACHE_KEY = 'commands:list';
 const CACHE_TIME = 60 * 60 * 24 * 7;
@@ -34,18 +35,19 @@ export async function CommandsRoute(router: FastifyInstance) {
 			});
 
 			if (response.status !== 200) {
-				return {
-					success: false,
-					error: {
-						message: 'Internal server error',
-						code: 'internal_server_error',
-					},
-				};
+				return internalError();
 			}
 
 			const result = (await response.json()) as APIApplicationCommand[];
 
-			const commands = result.map(({ id, type, name, description }) => ({ id, type, name, description }));
+			const commands = result.map(({ id, type, name, description }) => {
+				return {
+					id,
+					type,
+					name,
+					description,
+				};
+			});
 
 			await redis.psetex(CACHE_KEY, CACHE_TIME, JSON.stringify({ commands }));
 
@@ -57,13 +59,7 @@ export async function CommandsRoute(router: FastifyInstance) {
 		} catch (error) {
 			logger.error('Error listing commands', error);
 
-			return {
-				success: false,
-				error: {
-					message: 'Internal server error',
-					code: 'internal_server_error',
-				},
-			};
+			return internalError();
 		}
 	});
 }

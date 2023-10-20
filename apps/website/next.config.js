@@ -6,6 +6,7 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 export default withBundleAnalyzer({
 	reactStrictMode: true,
+	swcMinify: true,
 	experimental: {
 		typedRoutes: true,
 	},

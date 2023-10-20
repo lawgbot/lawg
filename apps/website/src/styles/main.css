@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 @layer base {
 	:root {
@@ -80,7 +80,7 @@
 
 @layer base {
 	html {
-		font-family: var(--font-inter);
+		font-family: var(--font-rubik);
 	}
 	* {
 		@apply border-border;

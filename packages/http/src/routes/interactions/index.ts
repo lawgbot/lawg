@@ -3,6 +3,7 @@ import { Context, RESTClient, logger } from '@yuikigai/framework';
 import { InteractionResponseType, type APIInteraction, InteractionType } from 'discord-api-types/v10';
 import type { FastifyInstance, FastifyRequest } from 'fastify';
 import { handleApplicationCommand, verifyRequest } from '../../util/command.js';
+import { error, internalError } from '../../util/response.js';
 
 export type DiscordIncomingRequest = FastifyRequest<{
 	Body: APIInteraction;
@@ -16,13 +17,7 @@ export async function InteractionsRoute(router: FastifyInstance) {
 	router.post('/interactions', async (request: DiscordIncomingRequest, reply): Promise<any> => {
 		try {
 			if (!(await verifyRequest(request))) {
-				return {
-					success: false,
-					error: {
-						message: 'Invalid request signature',
-						code: 'invalid_request_signature',
-					},
-				};
+				return error('Invalid request signature', 'invalid_request_signature');
 			}
 
 			const body = request.body;
@@ -50,24 +45,12 @@ export async function InteractionsRoute(router: FastifyInstance) {
 					throw new Error('Not implemented yet');
 
 				default:
-					return {
-						success: false,
-						error: {
-							message: 'Invalid interaction type',
-							code: 'invalid_interaction_type',
-						},
-					};
+					return error('Invalid interaction type', 'invalid_interaction_type');
 			}
 		} catch (error) {
 			logger.error('Error handling interaction', error);
 
-			return {
-				success: false,
-				error: {
-					message: 'Internal server error',
-					code: 'internal_server_error',
-				},
-			};
+			return internalError();
 		}
 	});
 }

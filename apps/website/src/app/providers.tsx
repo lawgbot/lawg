@@ -9,7 +9,7 @@ export function Providers({ children }: PropsWithChildren) {
 	useSystemThemeFallback();
 
 	return (
-		<ThemeProvider enableSystem disableTransitionOnChange defaultTheme="system" attribute="class">
+		<ThemeProvider enableSystem defaultTheme="system" attribute="class">
 			<NavProvider>{children}</NavProvider>
 		</ThemeProvider>
 	);

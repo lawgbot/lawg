@@ -8,6 +8,7 @@ import metricsPlugin from 'fastify-metrics';
 import fastifyRawBody from 'fastify-raw-body';
 import { register } from 'prom-client';
 import { registerRoutes } from './routes/register';
+import { noPermission, notFound } from './util/response';
 
 export interface HttpHandlerOptions {
 	/**
@@ -51,13 +52,7 @@ export class HttpHandler {
 		await this.router.register(registerRoutes);
 
 		this.router.setNotFoundHandler((_req, res) => {
-			void res.status(404).send({
-				success: false,
-				error: {
-					code: 'not_found',
-					message: 'Route does not exist',
-				},
-			});
+			void res.status(404).send(notFound);
 		});
 
 		this.router.get('/', (_req, res) => {
@@ -66,13 +61,7 @@ export class HttpHandler {
 
 		this.router.get('/metrics', async (req, res) => {
 			if (req.headers.authorization?.replace('Bearer ', '') !== process.env.PROMETHEUS_AUTH)
-				return res.status(401).send({
-					success: false,
-					error: {
-						code: 'no_permission',
-						message: 'You do not have permission to access this resource',
-					},
-				});
+				return res.status(401).send(noPermission);
 
 			const metrics = await register.metrics();
 			void res.send(metrics);

@@ -30,11 +30,14 @@
 		"url": "https://github.com/yuikigai/yuikigai/issues"
 	},
 	"dependencies": {
-		"@headlessui/react": "^1.7.17",
+		"@radix-ui/react-avatar": "^1.0.4",
+		"@radix-ui/react-dialog": "^1.0.5",
 		"@radix-ui/react-dropdown-menu": "^2.0.6",
 		"@radix-ui/react-navigation-menu": "^1.1.4",
+		"@radix-ui/react-scroll-area": "^1.0.5",
 		"@radix-ui/react-slot": "^1.0.2",
 		"@vercel/analytics": "^1.1.1",
+		"@yuikigai/utils": "workspace:^",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.0.0",
 		"lucide-react": "^0.287.0",
@@ -51,6 +54,7 @@
 		"@types/react": "^18.2.28",
 		"@types/react-dom": "^18.2.13",
 		"autoprefixer": "^10",
+		"discord-api-types": "^0.37.60",
 		"eslint": "^8.48.0",
 		"eslint-config-neon": "^0.1.57",
 		"eslint-formatter-pretty": "^5.0.0",

@@ -68,7 +68,7 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 			},
 			fontFamily: {
-				inter: ['var(--font-inter)'],
+				rubik: ['var(--font-rubik)'],
 			},
 		},
 	},
