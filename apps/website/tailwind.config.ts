@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss';
-import tailwindcss_animate from 'tailwindcss-animate';
+import { fontFamily } from 'tailwindcss/defaultTheme';
+import TailwindcssAnimate from 'tailwindcss-animate';
 
 export default {
 	darkMode: ['class'],
@@ -68,9 +69,9 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 			},
 			fontFamily: {
-				rubik: ['var(--font-rubik)'],
+				sans: ['var(--font-sans)', ...fontFamily.sans],
 			},
 		},
 	},
-	plugins: [tailwindcss_animate],
+	plugins: [TailwindcssAnimate],
 } satisfies Config;

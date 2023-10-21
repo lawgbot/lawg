@@ -1,9 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import type { PropsWithChildren } from 'react';
 import { useNav } from '~/contexts/nav';
+import { useLockBody } from '~/hooks/use-lock-body';
 import { cn } from '~/lib/util';
 import type { MainNavItem } from '~/types';
 import { ScrollArea } from './ui/scroll-area';
@@ -14,7 +14,8 @@ interface MobileNavProps {
 }
 
 export function MobileNav({ children, items }: PropsWithChildren<MobileNavProps>) {
-	const pathname = usePathname();
+	useLockBody();
+
 	const { opened, setOpened } = useNav();
 
 	return (
@@ -29,19 +30,6 @@ export function MobileNav({ children, items }: PropsWithChildren<MobileNavProps>
 				</Link>
 
 				<ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
-					<div className="flex flex-col space-y-3">
-						<Link
-							className={cn(
-								'transition-colors hover:text-foreground/80',
-								pathname?.startsWith('/dashboard') ? 'text-foreground' : 'text-foreground/60',
-							)}
-							onClick={() => setOpened(false)}
-							href="/dashboard"
-						>
-							Dashboard
-						</Link>
-					</div>
-
 					<nav className="grid grid-flow-row auto-rows-max text-sm">
 						{items.map((item, idx) => (
 							<Link

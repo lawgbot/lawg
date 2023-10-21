@@ -1,6 +1,5 @@
-import { DashboardHeader } from '~/components/dashboard-header';
-import { DashboardShell } from '~/components/dashboard-shell';
-import { Guild } from '~/components/guilds';
+import { Dashboard } from '~/components/dashboard';
+import { Guild } from '~/components/guild';
 import { fetchMutualGuilds } from '~/lib/guild';
 import { getCurrentUser } from '~/lib/session';
 
@@ -9,8 +8,8 @@ export default async function Page() {
 	const guilds = await fetchMutualGuilds();
 
 	return (
-		<DashboardShell>
-			<DashboardHeader heading={`Hello, ${user.username}`} text="Select a server to get started." />
+		<Dashboard.Shell>
+			<Dashboard.Header heading={`Hello, ${user.username}`} text="Select a server to get started." />
 			<div>
 				{guilds?.length ? (
 					<div className="divide-y divide-border rounded-md border">
@@ -20,6 +19,6 @@ export default async function Page() {
 					</div>
 				) : null}
 			</div>
-		</DashboardShell>
+		</Dashboard.Shell>
 	);
 }

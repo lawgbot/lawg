@@ -1,6 +1,13 @@
 import type { APIUser } from 'discord-api-types/v10';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { env } from '~/env.mjs';
+
+export const DISCORD_OAUTH2_URL = `https://discord.com/api/oauth2/authorize?client_id=${
+	env.NEXT_PUBLIC_DISCORD_CLIENT_ID
+}&redirect_uri=${encodeURIComponent(
+	env.NEXT_PUBLIC_DISCORD_CALLBACK_URL,
+)}&response_type=code&scope=identify%20email%20guilds`;
 
 export function getCurrentToken() {
 	const cookieStore = cookies();
@@ -8,10 +15,7 @@ export function getCurrentToken() {
 	const token = cookieStore.get('yuikigai-auth-session');
 
 	if (!token) {
-		redirect(
-			`https://discord.com/api/oauth2/authorize?client_id=${process.env.DISCORD_CLIENT_ID!}&redirect_uri=${process.env
-				.DISCORD_CALLBACK_URL!}&response_type=code&scope=identify%20email%20guilds`,
-		);
+		redirect(DISCORD_OAUTH2_URL);
 	}
 
 	return token.value;

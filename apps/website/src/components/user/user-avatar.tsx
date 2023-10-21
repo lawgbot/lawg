@@ -1,7 +1,7 @@
 import type { AvatarProps } from '@radix-ui/react-avatar';
 import { calculateUserDefaultAvatarIndex } from '@yuikigai/utils';
 import type { APIUser } from 'discord-api-types/v10';
-import { Avatar, AvatarImage } from './ui/avatar';
+import { Avatar, AvatarImage } from '../ui/avatar';
 
 interface UserAvatarProps extends AvatarProps {
 	readonly user: Pick<APIUser, 'avatar' | 'discriminator' | 'id' | 'username'>;

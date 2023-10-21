@@ -35,7 +35,7 @@ const typeScriptRuleset = merge(...typescript, {
 });
 
 const reactRuleset = merge(...react, {
-	files: [`apps/**/*${commonFiles}`, `packages/ui/**/*${commonFiles}`],
+	files: [`apps/**/*${commonFiles}`],
 	rules: {
 		'@next/next/no-html-link-for-pages': 0,
 		'react/react-in-jsx-scope': 0,

@@ -11,28 +11,10 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from './ui/dropdown-menu';
-import { UserAvatar } from './user-avatar';
+import { User } from './user';
 
 interface UserAccountNavProps extends HTMLAttributes<HTMLDivElement> {
 	readonly user: APIUser;
-}
-
-function UserTag(user: Pick<UserAccountNavProps['user'], 'discriminator' | 'username'>) {
-	if (user.discriminator === '0') {
-		return (
-			<div className="flex items-center gap-1">
-				<span className="text-sm text-muted-foreground">@</span>
-				<p className="font-medium">{user.username}</p>
-			</div>
-		);
-	}
-
-	return (
-		<>
-			<p className="font-medium">{user.username}</p>
-			<p className="w-[200px] truncate text-sm text-muted-foreground">{user.discriminator}</p>
-		</>
-	);
 }
 
 export function UserAccountNav({ user }: UserAccountNavProps) {
@@ -41,7 +23,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger>
-				<UserAvatar
+				<User.Avatar
 					className="h-8 w-8"
 					user={{ avatar: user.avatar, discriminator: user.discriminator, id: user.id, username: user.username }}
 				/>
@@ -49,12 +31,12 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
 			<DropdownMenuContent align="end">
 				<div className="flex items-center justify-start gap-2 p-2">
 					<div className="flex flex-col space-y-1 leading-none">
-						<UserTag discriminator={user.discriminator} username={user.username} />
+						<User.Tag globalName={user.global_name} discriminator={user.discriminator} username={user.username} />
 					</div>
 				</div>
 				<DropdownMenuSeparator />
-				<DropdownMenuItem asChild>
-					<Link href="/dashboard">Dashboard</Link>
+				<DropdownMenuItem className="cursor-pointer" asChild>
+					<Link href="/dashboard">Guilds</Link>
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem

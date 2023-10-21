@@ -1,17 +1,23 @@
 'use client';
 
 import { Analytics } from '@vercel/analytics/react';
-import { rubik } from '~/util/fonts';
+import { Inter as FontSans } from 'next/font/google';
+import { cn } from '~/lib/util';
 import { Providers } from './providers';
 
 import '~/styles/main.css';
+
+const fontSans = FontSans({
+	subsets: ['latin'],
+	variable: '--font-sans',
+});
 
 export default function GlobalError({ error }: { readonly error: Error }) {
 	console.error(error);
 
 	return (
-		<html className={rubik.variable} lang="en" suppressHydrationWarning>
-			<body className="scroll-smooth bg-background antialiased font-inter">
+		<html lang="en" suppressHydrationWarning>
+			<body className={cn('scroll-smooth min-h-screen bg-background antialiased font-sans', fontSans.variable)}>
 				<Providers>
 					<main className="mx-auto max-w-2xl min-h-screen">
 						<div className="mx-auto max-w-lg min-h-screen flex flex-col items-center justify-center gap-8 px-8 py-16 lg:px-6 lg:py-0">

@@ -1,3 +1,5 @@
+import type dynamicIconImports from 'lucide-react/dynamicIconImports';
+
 export interface NavItem {
 	disabled?: boolean;
 	href: string;
@@ -9,6 +11,7 @@ export type MainNavItem = NavItem;
 export type SidebarNavItem = {
 	disabled?: boolean;
 	external?: boolean;
+	icon?: keyof typeof dynamicIconImports;
 	title: string;
 } & (
 	| {
@@ -20,6 +23,15 @@ export type SidebarNavItem = {
 			items: NavLink[];
 	  }
 );
+
+export interface SiteConfig {
+	description: string;
+	links: {
+		github: string;
+	};
+	name: string;
+	url: string;
+}
 
 export interface RootConfig {
 	mainNav: MainNavItem[];

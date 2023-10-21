@@ -14,7 +14,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 					<MainNav items={rootConfig.mainNav} />
 					<nav>
 						<Link href="/dashboard" className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'px-4')}>
-							Dashboard
+							Login
 						</Link>
 					</nav>
 				</div>

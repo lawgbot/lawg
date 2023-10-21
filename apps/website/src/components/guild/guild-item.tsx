@@ -1,8 +1,7 @@
 import type { APIGuild } from 'discord-api-types/v10';
 import Link from 'next/link';
 import { cn } from '~/lib/util';
-import { Button, buttonVariants } from '../ui/button';
-import { Skeleton } from '../ui/skeleton';
+import { buttonVariants } from '../ui/button';
 import { GuildIcon } from './guild-icon';
 
 export interface GuildItemProps {
@@ -27,23 +26,6 @@ export function GuildItem({ guild }: GuildItemProps) {
 				<Link href={`/dashboard/guilds/${guild.id}`} className={cn(buttonVariants())}>
 					Manage
 				</Link>
-			</div>
-		</div>
-	);
-}
-
-export function GuildItemSkeleton() {
-	return (
-		<div className="flex border p-6 rounded-md">
-			<div className="flex flex-row gap-4 justify-between items-center">
-				<div className="flex items-center gap-2">
-					<Skeleton className="h-12 w-12 rounded-full" />
-					<Skeleton className="w-8" />
-				</div>
-
-				<Button variant="default" disabled>
-					Manage
-				</Button>
 			</div>
 		</div>
 	);

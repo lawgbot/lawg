@@ -1,5 +1,7 @@
 import bundleAnalyzer from '@next/bundle-analyzer';
 
+import './src/env.mjs';
+
 const withBundleAnalyzer = bundleAnalyzer({
 	enabled: process.env.ANALYZE === 'true',
 });
@@ -7,9 +9,6 @@ const withBundleAnalyzer = bundleAnalyzer({
 export default withBundleAnalyzer({
 	reactStrictMode: true,
 	swcMinify: true,
-	experimental: {
-		typedRoutes: true,
-	},
 	images: {
 		dangerouslyAllowSVG: true,
 		contentDispositionType: 'attachment',

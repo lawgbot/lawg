@@ -1,5 +1,6 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
+import { DISCORD_OAUTH2_URL } from './lib/session';
 
 export default async function middleware(request: NextRequest) {
 	if (request.nextUrl.pathname.includes('dashboard')) {
@@ -7,12 +8,7 @@ export default async function middleware(request: NextRequest) {
 			const cookies = request.cookies;
 
 			if (!cookies.get('yuikigai-auth-session')) {
-				return NextResponse.redirect(
-					new URL(
-						`https://discord.com/api/oauth2/authorize?client_id=${process.env.DISCORD_CLIENT_ID!}&redirect_uri=${process
-							.env.DISCORD_CALLBACK_URL!}&response_type=code&scope=identify%20email%20guilds`,
-					),
-				);
+				return NextResponse.redirect(new URL(DISCORD_OAUTH2_URL));
 			}
 		} catch {}
 	}

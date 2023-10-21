@@ -6,6 +6,6 @@ export async function GET(req: NextRequest) {
 	cookies().delete('yuikigai-auth-session');
 
 	return NextResponse.redirect(
-		new URL('/', process.env.NODE_ENV === 'development' ? `http://localhost:3000` : req.url),
+		new URL('/', process.env.NODE_ENV === 'development' ? `https://${req.headers.get('host')}` : req.url),
 	);
 }

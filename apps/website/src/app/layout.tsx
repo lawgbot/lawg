@@ -1,22 +1,26 @@
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
+import { Inter as FontSans } from 'next/font/google';
 import type { PropsWithChildren } from 'react';
+import { siteConfig } from '~/config/site';
+import { env } from '~/env.mjs';
 import { cn } from '~/lib/util';
-import { DESCRIPTION } from '~/util/constants';
-import { rubik } from '~/util/fonts';
 import { Providers } from './providers';
 
 import '~/styles/main.css';
 
+const fontSans = FontSans({
+	subsets: ['latin'],
+	variable: '--font-sans',
+});
+
 export const metadata: Metadata = {
-	metadataBase: new URL(
-		process.env.METADATA_BASE_URL ? process.env.METADATA_BASE_URL : `http://localhost:${process.env.PORT ?? 3_000}`,
-	),
+	metadataBase: new URL(env.NEXT_PUBLIC_LOCAL_DEV ? 'http://localhost:3000' : siteConfig.url),
 	title: {
-		default: 'yuikigai',
-		template: '%s | yuikigai',
+		default: siteConfig.name,
+		template: `%s | ${siteConfig.name}`,
 	},
-	description: DESCRIPTION,
+	description: siteConfig.description,
 	viewport: {
 		minimumScale: 1,
 		initialScale: 1,
@@ -46,11 +50,15 @@ export const metadata: Metadata = {
 	manifest: '/site.webmanifest',
 	authors: [
 		{
-			name: 'niskii',
+			name: 'Nicolas Ribeiro',
 			url: 'https://niskii.dev',
 		},
+		{
+			name: 'Davi Patricio',
+			url: 'https://davipatricio.tech',
+		},
 	],
-	creator: 'niskii',
+	creator: 'Nicolas Ribeiro',
 	themeColor: [
 		{
 			media: '(prefers-color-scheme: light)',
@@ -58,24 +66,23 @@ export const metadata: Metadata = {
 		},
 		{ media: '(prefers-color-scheme: dark)', color: 'black' },
 	],
-	robots: 'index, follow',
 	colorScheme: 'light dark',
 	appleWebApp: {
-		title: 'yuikigai',
+		title: siteConfig.name,
 	},
-	applicationName: 'yuikigai',
+	applicationName: siteConfig.name,
 	openGraph: {
-		siteName: 'yuikigai',
+		siteName: siteConfig.name,
 		type: 'website',
-		title: 'yuikigai',
+		title: siteConfig.name,
 		locale: 'en_US',
-		description: DESCRIPTION,
+		description: siteConfig.description,
 	},
 	twitter: {
 		card: 'summary_large_image',
 		creator: '@mldyxniskii',
-		title: 'yuikigai',
-		description: DESCRIPTION,
+		title: siteConfig.name,
+		description: siteConfig.description,
 	},
 	other: {
 		'msapplication-TileColor': '#18181b',
@@ -84,9 +91,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: PropsWithChildren) {
 	return (
-		<html className={cn(rubik.variable)} lang="en" suppressHydrationWarning>
+		<html lang="en" suppressHydrationWarning>
 			<head />
-			<body className="scroll-smooth bg-background antialiased font-rubik">
+			<body className={cn('scroll-smooth min-h-screen bg-background antialiased font-sans', fontSans.variable)}>
 				<Providers>{children}</Providers>
 				<Analytics />
 			</body>

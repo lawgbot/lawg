@@ -1,5 +1,6 @@
 import type { APIGuild } from 'discord-api-types/v10';
 import { redirect } from 'next/navigation';
+import { env } from '~/env.mjs';
 import { getCurrentToken, getCurrentUser } from './session';
 
 export async function fetchMutualGuilds() {
@@ -23,7 +24,7 @@ export async function fetchMutualGuilds() {
 
 	const botGuilds = await fetch('https://discord.com/api/v10/users/@me/guilds', {
 		headers: {
-			Authorization: `Bot ${process.env.DISCORD_BOT_TOKEN}`,
+			Authorization: `Bot ${env.DISCORD_BOT_TOKEN}`,
 		},
 		next: { revalidate: 3_600 },
 	});
@@ -42,18 +43,16 @@ export async function fetchMutualGuilds() {
 }
 
 export async function fetchGuild(guildId: string) {
-	const token = getCurrentToken();
-
-	const guild = await fetch(`https://discord.com/api/v10/guilds/${guildId}`, {
+	const result = await fetch(`https://discord.com/api/v10/guilds/${guildId}`, {
 		headers: {
-			Authorization: `Bearer ${token}`,
+			Authorization: `Bot ${env.DISCORD_BOT_TOKEN}`,
 		},
 		next: { revalidate: 3_600 },
 	});
 
-	if (!guild.ok) {
+	if (result.status !== 200) {
 		redirect('/api/discord/logout');
 	}
 
-	return (await guild.json()) as APIGuild;
+	return (await result.json()) as APIGuild;
 }

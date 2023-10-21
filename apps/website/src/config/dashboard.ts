@@ -3,14 +3,16 @@ import type { DashboardConfig } from '~/types';
 export const dashboardConfig: DashboardConfig = {
 	mainNav: [
 		{
-			title: 'Home',
-			href: '/',
+			title: 'Support',
+			href: 'https://discord.com',
+			disabled: true,
 		},
 	],
 	sidebarNav: [
 		{
-			title: 'Guilds',
+			title: 'Your Guilds',
 			href: '/dashboard',
+			icon: 'settings',
 		},
 	],
 };

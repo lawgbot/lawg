@@ -1,3 +1,8 @@
+import Link from 'next/link';
+import { buttonVariants } from '~/components/ui/button';
+import { siteConfig } from '~/config/site';
+import { cn } from '~/lib/util';
+
 export default async function Page() {
 	return (
 		<section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
@@ -7,6 +12,20 @@ export default async function Page() {
 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid qui corporis magni expedita. Molestiae
 					dolore laboriosam quod est doloribus quas nobis laborum enim officiis distinctio, fugiat, saepe sit ab earum?
 				</p>
+				<div className="space-x-4">
+					<Link href="/dashboard" className={cn(buttonVariants({ size: 'lg' }))}>
+						Get Started
+					</Link>
+
+					<Link
+						href={siteConfig.links.github}
+						target="_blank"
+						rel="noreferrer"
+						className={cn(buttonVariants({ variant: 'outline', size: 'lg' }))}
+					>
+						GitHub
+					</Link>
+				</div>
 			</div>
 		</section>
 	);
