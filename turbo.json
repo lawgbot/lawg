@@ -29,7 +29,7 @@
 			"outputs": ["dist/**/*"],
 			"outputMode": "errors-only"
 		},
-		"@yuikigai/website#build": {
+		"@lawgbot/website#build": {
 			"dependsOn": ["^build"],
 			"env": ["NEXT_PUBLIC_LOCAL_DEV", "METADATA_BASE_URL"],
 			"dotEnv": [".env.development", ".env.development.local", ".env.local"],

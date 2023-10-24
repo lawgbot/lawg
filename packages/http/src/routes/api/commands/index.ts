@@ -1,5 +1,6 @@
 import process from 'node:process';
-import { DISCORD_API_URL, DISCORD_USER_AGENT, container, kRedis, logger } from '@yuikigai/framework';
+import { DISCORD_USER_AGENT, container, kRedis, logger } from '@lawgbot/framework';
+import { DISCORD_API_URL } from '@lawgbot/utils';
 import type { APIApplicationCommand } from 'discord-api-types/v10';
 import type { FastifyInstance } from 'fastify';
 import type { Redis } from 'ioredis';
@@ -10,7 +11,7 @@ const CACHE_KEY = 'commands:list';
 const CACHE_TIME = 60 * 60 * 24 * 7;
 
 export async function CommandsRoute(router: FastifyInstance) {
-	router.get('/commands', { config: { rateLimit: rateLimitConfig } }, async (_request, _reply): Promise<any> => {
+	router.get('/commands', { config: { rateLimit: rateLimitConfig } }, async (_request, reply): Promise<void> => {
 		try {
 			const redis = container.resolve<Redis>(kRedis);
 
@@ -19,11 +20,12 @@ export async function CommandsRoute(router: FastifyInstance) {
 			if (cached) {
 				const parsedCache = JSON.parse(cached);
 
-				return {
+				void reply.status(200).send({
 					success: true,
 					cached: true,
 					data: parsedCache,
-				};
+				});
+				return;
 			}
 
 			const response = await fetch(`${DISCORD_API_URL}/applications/${process.env.DISCORD_CLIENT_ID}/commands`, {
@@ -35,7 +37,7 @@ export async function CommandsRoute(router: FastifyInstance) {
 			});
 
 			if (response.status !== 200) {
-				return internalError();
+				void internalError();
 			}
 
 			const result = (await response.json()) as APIApplicationCommand[];
@@ -51,15 +53,15 @@ export async function CommandsRoute(router: FastifyInstance) {
 
 			await redis.psetex(CACHE_KEY, CACHE_TIME, JSON.stringify({ commands }));
 
-			return {
+			void reply.status(200).send({
 				success: true,
 				cached: false,
 				data: commands,
-			};
+			});
 		} catch (error) {
 			logger.error('Error listing commands', error);
 
-			return internalError();
+			void internalError();
 		}
 	});
 }

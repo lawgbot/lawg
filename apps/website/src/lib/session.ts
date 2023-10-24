@@ -12,7 +12,7 @@ export const DISCORD_OAUTH2_URL = `https://discord.com/api/oauth2/authorize?clie
 export function getCurrentToken() {
 	const cookieStore = cookies();
 
-	const token = cookieStore.get('yuikigai-auth-session');
+	const token = cookieStore.get('lawg-auth-session');
 
 	if (!token) {
 		redirect(DISCORD_OAUTH2_URL);

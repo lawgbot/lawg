@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import type { PropsWithChildren } from 'react';
+import { siteConfig } from '~/config/site';
 import { useNav } from '~/contexts/nav';
 import { useLockBody } from '~/hooks/use-lock-body';
 import { cn } from '~/lib/util';
@@ -26,7 +27,7 @@ export function MobileNav({ children, items }: PropsWithChildren<MobileNavProps>
 					onClick={() => setOpened(false)}
 					className="flex min-w-max shrink place-items-center place-content-center"
 				>
-					<h2 className="text-xl font-bold uppercase">yuikigai</h2>
+					<h2 className="text-xl font-bold uppercase">{siteConfig.name}</h2>
 				</Link>
 
 				<ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">

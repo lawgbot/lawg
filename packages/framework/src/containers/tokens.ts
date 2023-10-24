@@ -1,3 +1,3 @@
-export const kCommands = Symbol('Commands');
-export const kPrisma = Symbol('Prisma');
-export const kRedis = Symbol('Redis');
+export const kCommands = Symbol('lawgbot.commands');
+export const kPrisma = Symbol('lawgbot.prisma');
+export const kRedis = Symbol('lawgbot.redis');

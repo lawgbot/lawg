@@ -1,6 +1,6 @@
 {
 	"$schema": "https://json.schemastore.org/package.json",
-	"name": "@yuikigai/yuikigai",
+	"name": "@lawgbot/lawg",
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
@@ -11,7 +11,7 @@
 		"lint:affected": "turbo run lint --filter='...[origin/main]' --concurrency=4",
 		"format": "turbo run format --concurrency=4",
 		"fmt": "turbo run format --concurrency=4",
-		"dev": "turbo run dev --filter=!@yuikigai/website --concurrency=4",
+		"dev": "turbo run dev --filter=!@lawgbot/website --concurrency=4",
 		"prepare": "is-ci || husky install"
 	},
 	"type": "module",
@@ -22,10 +22,10 @@
 	"keywords": [],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/yuikigai/yuikigai.git"
+		"url": "https://github.com/lawgbot/lawg.git"
 	},
 	"bugs": {
-		"url": "https://github.com/yuikigai/yuikigai/issues"
+		"url": "https://github.com/lawgbot/lawg/issues"
 	},
 	"devDependencies": {
 		"@types/lodash.merge": "^4.6.7",

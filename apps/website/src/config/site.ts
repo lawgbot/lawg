@@ -1,10 +1,10 @@
 import type { SiteConfig } from '~/types';
 
 export const siteConfig: SiteConfig = {
-	name: 'yuikigai',
-	description: 'yuikigai website',
+	name: 'lawg',
+	description: 'lawg bot website',
 	url: 'http://localhost:3000',
 	links: {
-		github: 'https://github.com/yuikigai/yuikigai',
+		github: 'https://github.com/lawgbot/lawg',
 	},
 };

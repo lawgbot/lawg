@@ -4,6 +4,7 @@ import { Menu } from 'lucide-react';
 import Link from 'next/link';
 import { useSelectedLayoutSegment } from 'next/navigation';
 import type { PropsWithChildren } from 'react';
+import { siteConfig } from '~/config/site';
 import { useNav } from '~/contexts/nav';
 import { cn } from '~/lib/util';
 import type { MainNavItem } from '~/types';
@@ -28,7 +29,7 @@ export function MainNav({ children, items }: PropsWithChildren<MainNavProps>) {
 	return (
 		<div className="flex gap-6 md:gap-10">
 			<Link href="/" className="hidden items-center space-x-2 md:flex">
-				<span className="hidden font-bold sm:inline-block">yuikigai</span>
+				<span className="hidden font-bold sm:inline-block">{siteConfig.name}</span>
 			</Link>
 			{items?.length ? (
 				<NavigationMenu className="hidden gap-6 md:flex">

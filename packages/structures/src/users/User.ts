@@ -1,5 +1,5 @@
 import { userMention } from '@discordjs/formatters';
-import { calculateUserDefaultAvatarIndex } from '@yuikigai/utils';
+import { calculateUserDefaultAvatarIndex } from '@lawgbot/utils';
 import type { APIUser, Snowflake } from 'discord-api-types/v10';
 import { Structure } from '../Structure';
 import { data as kData } from '../util/symbols.js';

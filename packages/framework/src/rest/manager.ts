@@ -1,25 +1,28 @@
-import { URL } from 'node:url';
+import { URL, URLSearchParams } from 'node:url';
+import { DISCORD_API_URL } from '@lawgbot/utils';
 import { DISCORD_USER_AGENT } from '..';
-import type { Method, ErroredAPIResponse } from './types';
+import type { Method } from './types';
 
-export interface APIClientOptions {
+export interface RESTManagerOptions {
 	readonly token: string;
 	readonly userAgent?: string;
 }
 
-export class RESTClient {
-	public constructor(public options: APIClientOptions) {
+type RequestResponse = Record<string, any>;
+
+export class RESTManager {
+	public constructor(public options: RESTManagerOptions) {
 		this.options = {
 			userAgent: options.userAgent ?? DISCORD_USER_AGENT,
 			token: options.token,
 		};
 	}
 
-	public async get<T extends Record<string, any>>(path: string, query?: Record<string, number | string | undefined>) {
+	public async get<T extends RequestResponse>(path: string, query?: Record<string, number | string | undefined>) {
 		return this.request<T>('GET', path, undefined, query);
 	}
 
-	public async post<T extends Record<string, any>>(
+	public async post<T extends RequestResponse>(
 		path: string,
 		body: unknown,
 		query?: Record<string, number | string | undefined>,
@@ -27,7 +30,7 @@ export class RESTClient {
 		return this.request<T>('POST', path, body, query);
 	}
 
-	public async put<T extends Record<string, any>>(
+	public async put<T extends RequestResponse>(
 		path: string,
 		body: unknown,
 		query?: Record<string, number | string | undefined>,
@@ -35,7 +38,7 @@ export class RESTClient {
 		return this.request<T>('PUT', path, body, query);
 	}
 
-	public async patch<T extends Record<string, any>>(
+	public async patch<T extends RequestResponse>(
 		path: string,
 		body: unknown,
 		query?: Record<string, number | string | undefined>,
@@ -43,21 +46,18 @@ export class RESTClient {
 		return this.request<T>('PATCH', path, body, query);
 	}
 
-	public async delete<T extends Record<string, any>>(
-		path: string,
-		query?: Record<string, number | string | undefined>,
-	) {
+	public async delete<T extends RequestResponse>(path: string, query?: Record<string, number | string | undefined>) {
 		return this.request<T>('DELETE', path, undefined, query);
 	}
 
-	public async raw<T extends Record<string, any>>(request: Request) {
+	public async raw<T extends RequestResponse>(request: Request) {
 		request.headers.set('Authorization', `Bearer ${this.options.token}`);
 		if (this.options.userAgent) request.headers.set('User-Agent', this.options.userAgent);
 
 		return this.executeRequest<T>(request);
 	}
 
-	private async executeRequest<T extends Record<string, any>>(request: Request): Promise<T> {
+	private async executeRequest<T extends RequestResponse>(request: Request): Promise<T> {
 		const response = await fetch(request, {
 			keepalive: true,
 		});
@@ -66,14 +66,8 @@ export class RESTClient {
 			return undefined as unknown as T;
 		}
 
-		const result = await (response.json() as Promise<T>).catch((error: Error): ErroredAPIResponse => {
-			return {
-				code: response.status,
-				errors: {
-					'0': [error.message],
-				},
-				message: 'Local client error',
-			};
+		const result = await (response.json() as Promise<T>).catch((error: Error): never => {
+			throw new Error(`${error.message} - ${response.status} ${response.statusText}`);
 		});
 
 		if ('errors' in result) {
@@ -83,20 +77,17 @@ export class RESTClient {
 		return result;
 	}
 
-	private async request<T extends Record<string, any>>(
+	private async request<T extends RequestResponse>(
 		method: Method,
 		path: string,
 		body: unknown,
-		query: Record<string, number | string | undefined> = {},
+		query: Record<string, any> = {},
 		init: RequestInit = {},
 	) {
-		const url = new URL(`https://discord.com/api/v10${path}`);
+		const baseURL = new URL(`${DISCORD_API_URL}${path}`);
+		const params = new URLSearchParams(query);
 
-		for (const [key, value] of Object.entries(query)) {
-			if (value) {
-				url.searchParams.append(key, value.toString());
-			}
-		}
+		const url = `${baseURL}${params ? `?${params}` : ''}`;
 
 		const headers = new Headers({
 			...init?.headers,

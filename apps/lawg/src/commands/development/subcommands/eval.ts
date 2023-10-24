@@ -1,6 +1,6 @@
 import { inspect } from 'node:util';
 import { codeBlock } from '@discordjs/formatters';
-import type { ContextParam } from '@yuikigai/framework';
+import type { ContextParam } from '@lawgbot/framework';
 
 interface EvalArgs {
 	code: string;

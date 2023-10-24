@@ -3,13 +3,13 @@ import { z } from 'zod';
 
 export const env = createEnv({
 	server: {
-		DISCORD_CLIENT_SECRET: z.string(),
-		DISCORD_BOT_TOKEN: z.string(),
+		DISCORD_CLIENT_SECRET: z.string().min(1),
+		DISCORD_BOT_TOKEN: z.string().min(1),
 	},
 	client: {
-		NEXT_PUBLIC_LOCAL_DEV: z.boolean().default(false),
-		NEXT_PUBLIC_DISCORD_CLIENT_ID: z.string(),
-		NEXT_PUBLIC_DISCORD_CALLBACK_URL: z.string().default('http://localhost:3000/api/discord/callback'),
+		NEXT_PUBLIC_LOCAL_DEV: z.boolean(),
+		NEXT_PUBLIC_DISCORD_CLIENT_ID: z.string().min(1),
+		NEXT_PUBLIC_DISCORD_CALLBACK_URL: z.string().min(1),
 	},
 	runtimeEnv: {
 		NEXT_PUBLIC_LOCAL_DEV: Boolean(process.env.NEXT_PUBLIC_LOCAL_DEV),

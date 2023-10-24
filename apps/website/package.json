@@ -1,12 +1,12 @@
 {
 	"$schema": "https://json.schemastore.org/package.json",
-	"name": "@yuikigai/website",
+	"name": "@lawgbot/website",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev",
+		"dev": "next dev -p 3001",
 		"build": "next build",
-		"start": "next start",
+		"start": "next start -p 3001",
 		"lint": "prettier --check . && eslint --format=pretty src",
 		"format": "prettier --write . && eslint --fix --format=pretty src",
 		"fmt": "pnpm run format"
@@ -23,11 +23,11 @@
 	"keywords": [],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/yuikigai/yuikigai.git",
+		"url": "https://github.com/lawgbot/lawg.git",
 		"directory": "apps/website"
 	},
 	"bugs": {
-		"url": "https://github.com/yuikigai/yuikigai/issues"
+		"url": "https://github.com/lawgbot/lawg/issues"
 	},
 	"dependencies": {
 		"@radix-ui/react-avatar": "^1.0.4",
@@ -38,7 +38,7 @@
 		"@radix-ui/react-slot": "^1.0.2",
 		"@t3-oss/env-nextjs": "^0.7.1",
 		"@vercel/analytics": "^1.1.1",
-		"@yuikigai/utils": "workspace:^",
+		"@lawgbot/utils": "workspace:^",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.0.0",
 		"lucide-react": "^0.287.0",

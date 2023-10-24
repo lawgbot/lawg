@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-	const commandsData = await fetch('http://localhost:8080/api/commands', {
+	const commandsData = await fetch('http://127.0.0.1:4001/api/commands', {
 		next: {
 			revalidate: 3_600,
 		},

@@ -1,7 +1,7 @@
 import process from 'node:process';
 import fastifyRateLimit from '@fastify/rate-limit';
 import 'reflect-metadata';
-import { createCommands, createRedis } from '@yuikigai/framework';
+import { createCommands, createRedis } from '@lawgbot/framework';
 import type { FastifyInstance } from 'fastify';
 import { fastify } from 'fastify';
 import metricsPlugin from 'fastify-metrics';
@@ -56,7 +56,7 @@ export class HttpHandler {
 		});
 
 		this.router.get('/', (_req, res) => {
-			void res.redirect('https://github.com/yuikigai/yuikigai');
+			void res.redirect('https://github.com/lawgbot/lawg');
 		});
 
 		this.router.get('/metrics', async (req, res) => {

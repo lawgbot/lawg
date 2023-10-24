@@ -1,6 +1,6 @@
 {
 	"$schema": "https://json.schemastore.org/package.json",
-	"name": "@yuikigai/http",
+	"name": "@lawgbot/http",
 	"version": "0.0.1",
 	"description": "",
 	"scripts": {
@@ -38,15 +38,16 @@
 	"keywords": [],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/yuikigai/yuikigai.git",
+		"url": "https://github.com/lawgbot/lawg.git",
 		"directory": "packages/http"
 	},
 	"bugs": {
-		"url": "https://github.com/yuikigai/yuikigai/issues"
+		"url": "https://github.com/lawgbot/lawg/issues"
 	},
 	"dependencies": {
 		"@fastify/rate-limit": "^8.0.3",
-		"@yuikigai/framework": "workspace:^",
+		"@lawgbot/framework": "workspace:^",
+		"@lawgbot/utils": "workspace:^",
 		"discord-api-types": "^0.37.60",
 		"discord-verify": "^1.2.0",
 		"fastify": "^4.24.1",

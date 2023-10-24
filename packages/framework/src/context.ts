@@ -1,8 +1,8 @@
-import { Member, User, Channel } from '@yuikigai/structures';
+import { Member, User, Channel } from '@lawgbot/structures';
 import type { APIChannel, APIInteraction } from 'discord-api-types/v10';
 import type { FastifyReply } from 'fastify';
 import { InteractionsAPI, WebhooksAPI } from './api/index.js';
-import type { RESTClient } from './index.js';
+import type { RESTManager } from './index.js';
 
 export class Context {
 	public readonly interaction: InteractionsAPI;
@@ -18,7 +18,7 @@ export class Context {
 	public readonly channel: Channel;
 
 	public constructor(
-		public rest: RESTClient,
+		public rest: RESTManager,
 		public context: APIInteraction,
 		public response: FastifyReply,
 	) {

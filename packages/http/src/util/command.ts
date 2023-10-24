@@ -1,10 +1,18 @@
 import crypto from 'node:crypto';
 import process from 'node:process';
-import { kCommands, container, transformApplicationInteraction } from '@yuikigai/framework';
-import type { Context, Command } from '@yuikigai/framework';
-import type { APIChatInputApplicationCommandInteractionData } from 'discord-api-types/v10';
+import { kCommands, container, transformApplicationInteraction } from '@lawgbot/framework';
+import type { Context, Command } from '@lawgbot/framework';
+import type { APIChatInputApplicationCommandInteractionData, APIInteraction } from 'discord-api-types/v10';
 import { verify } from 'discord-verify/node';
-import type { DiscordIncomingRequest } from '../routes';
+import type { FastifyRequest } from 'fastify';
+
+export type DiscordIncomingRequest = FastifyRequest<{
+	Body: APIInteraction;
+	Headers: {
+		'x-signature-ed25519': string;
+		'x-signature-timestamp': string;
+	};
+}>;
 
 export async function verifyRequest(req: DiscordIncomingRequest) {
 	const signature = req.headers['x-signature-ed25519'];

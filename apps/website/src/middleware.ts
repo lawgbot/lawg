@@ -7,7 +7,7 @@ export default async function middleware(request: NextRequest) {
 		try {
 			const cookies = request.cookies;
 
-			if (!cookies.get('yuikigai-auth-session')) {
+			if (!cookies.get('lawg-auth-session')) {
 				return NextResponse.redirect(new URL(DISCORD_OAUTH2_URL));
 			}
 		} catch {}

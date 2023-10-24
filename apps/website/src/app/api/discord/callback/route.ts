@@ -25,7 +25,7 @@ export async function GET(req: NextRequest) {
 
 	const json = await data.json();
 
-	cookieStore.set('yuikigai-auth-session', json.access_token, {
+	cookieStore.set('lawg-auth-session', json.access_token, {
 		maxAge: json.expires_in,
 		path: '/',
 		httpOnly: true,

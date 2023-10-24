@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import { siteConfig } from '~/config/site';
 import { cn } from '~/lib/util';
 
 const ThemeSwitcher = dynamic(async () => import('./theme-switcher'));
@@ -30,7 +31,7 @@ export function SiteFooter({ className }: { readonly className?: string }) {
 						</Link>
 						. The source code is available on{' '}
 						<Link
-							href="https://github.com/yuikigai/yuikigai"
+							href={siteConfig.links.github}
 							target="_blank"
 							rel="noreferrer"
 							className="font-medium underline underline-offset-4"

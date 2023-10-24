@@ -1,4 +1,4 @@
-import { Interaction } from '@yuikigai/structures';
+import { Interaction } from '@lawgbot/structures';
 import type { APIInteraction, APIInteractionResponseCallbackData, Snowflake } from 'discord-api-types/v10';
 import { InteractionResponseType } from 'discord-api-types/v10';
 import type { FastifyReply } from 'fastify';

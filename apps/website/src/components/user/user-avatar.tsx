@@ -1,5 +1,5 @@
+import { calculateUserDefaultAvatarIndex } from '@lawgbot/utils';
 import type { AvatarProps } from '@radix-ui/react-avatar';
-import { calculateUserDefaultAvatarIndex } from '@yuikigai/utils';
 import type { APIUser } from 'discord-api-types/v10';
 import { Avatar, AvatarImage } from '../ui/avatar';
 

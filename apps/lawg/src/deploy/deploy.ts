@@ -1,6 +1,8 @@
 import 'reflect-metadata';
 import 'dotenv/config';
-import { logger, DISCORD_API_URL } from '@yuikigai/framework';
+
+import { logger } from '@lawgbot/framework';
+import { DISCORD_API_URL } from '@lawgbot/utils';
 
 export async function deploy(data: any, dev = false) {
 	const midRoute = dev ? `/guilds/${process.env.DISCORD_DEVGUILD_ID!}` : '';

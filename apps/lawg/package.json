@@ -1,6 +1,6 @@
 {
 	"$schema": "https://json.schemastore.org/package.json",
-	"name": "@yuikigai/yuikigai",
+	"name": "@lawgbot/lawg",
 	"version": "0.1.0",
 	"description": "",
 	"scripts": {
@@ -29,16 +29,17 @@
 	"keywords": [],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/yuikigai/yuikigai.git",
-		"directory": "apps/yuikigai"
+		"url": "https://github.com/lawgbot/lawg.git",
+		"directory": "apps/lawg"
 	},
 	"bugs": {
-		"url": "https://github.com/yuikigai/yuikigai/issues"
+		"url": "https://github.com/lawgbot/lawg/issues"
 	},
 	"dependencies": {
 		"@discordjs/formatters": "^0.3.2",
-		"@yuikigai/framework": "workspace:^",
-		"@yuikigai/http": "workspace:^",
+		"@lawgbot/framework": "workspace:^",
+		"@lawgbot/http": "workspace:^",
+		"@lawgbot/utils": "workspace:^",
 		"discord-api-types": "^0.37.60",
 		"dotenv": "^16.3.1",
 		"readdirp": "^3.6.0",

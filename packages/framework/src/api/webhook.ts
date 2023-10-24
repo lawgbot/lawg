@@ -1,11 +1,11 @@
 import type { Snowflake } from 'discord-api-types/globals';
 import { Routes } from 'discord-api-types/v10';
 import type { APIInteraction, APIInteractionResponseCallbackData } from 'discord-api-types/v10';
-import type { RESTClient } from '..';
+import type { RESTManager } from '../rest/index.js';
 
 export class WebhooksAPI {
 	public constructor(
-		private readonly rest: RESTClient,
+		private readonly rest: RESTManager,
 		private readonly interaction: APIInteraction,
 	) {}
 

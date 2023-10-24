@@ -2,7 +2,7 @@ import 'dotenv/config';
 import 'reflect-metadata';
 
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import type { Command } from '@yuikigai/framework';
+import type { Command } from '@lawgbot/framework';
 import {
 	commandInfo,
 	container,
@@ -11,8 +11,8 @@ import {
 	kCommands,
 	logger,
 	createPrisma,
-} from '@yuikigai/framework';
-import { HttpHandler } from '@yuikigai/http';
+} from '@lawgbot/framework';
+import { HttpHandler } from '@lawgbot/http';
 import readdirp from 'readdirp';
 
 await createPrisma();

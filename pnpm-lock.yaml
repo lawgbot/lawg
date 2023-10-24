@@ -42,8 +42,66 @@ importers:
         specifier: ^0.34.6
         version: 0.34.6
 
+  apps/lawg:
+    dependencies:
+      '@discordjs/formatters':
+        specifier: ^0.3.2
+        version: 0.3.2
+      '@lawgbot/framework':
+        specifier: workspace:^
+        version: link:../../packages/framework
+      '@lawgbot/http':
+        specifier: workspace:^
+        version: link:../../packages/http
+      '@lawgbot/utils':
+        specifier: workspace:^
+        version: link:../../packages/utils
+      discord-api-types:
+        specifier: ^0.37.60
+        version: 0.37.60
+      dotenv:
+        specifier: ^16.3.1
+        version: 16.3.1
+      readdirp:
+        specifier: ^3.6.0
+        version: 3.6.0
+      reflect-metadata:
+        specifier: ^0.1.13
+        version: 0.1.13
+      tsyringe:
+        specifier: ^4.8.0
+        version: 4.8.0
+    devDependencies:
+      '@types/node':
+        specifier: ^20.8.6
+        version: 20.8.6
+      eslint:
+        specifier: ^8.48.0
+        version: 8.51.0
+      eslint-config-neon:
+        specifier: ^0.1.57
+        version: 0.1.57(eslint@8.51.0)(typescript@5.2.2)
+      eslint-formatter-pretty:
+        specifier: ^5.0.0
+        version: 5.0.0
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      tsx:
+        specifier: ^3.13.0
+        version: 3.13.0
+      turbo:
+        specifier: ^1.10.15
+        version: 1.10.15
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+
   apps/website:
     dependencies:
+      '@lawgbot/utils':
+        specifier: workspace:^
+        version: link:../../packages/utils
       '@radix-ui/react-avatar':
         specifier: ^1.0.4
         version: 1.0.4(@types/react-dom@18.2.13)(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
@@ -68,9 +126,6 @@ importers:
       '@vercel/analytics':
         specifier: ^1.1.1
         version: 1.1.1
-      '@yuikigai/utils':
-        specifier: workspace:^
-        version: link:../../packages/utils
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -148,63 +203,14 @@ importers:
         specifier: ^32.4.1
         version: 32.4.1
 
-  apps/yuikigai:
-    dependencies:
-      '@discordjs/formatters':
-        specifier: ^0.3.2
-        version: 0.3.2
-      '@yuikigai/framework':
-        specifier: workspace:^
-        version: link:../../packages/framework
-      '@yuikigai/http':
-        specifier: workspace:^
-        version: link:../../packages/http
-      discord-api-types:
-        specifier: ^0.37.60
-        version: 0.37.60
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
-      readdirp:
-        specifier: ^3.6.0
-        version: 3.6.0
-      reflect-metadata:
-        specifier: ^0.1.13
-        version: 0.1.13
-      tsyringe:
-        specifier: ^4.8.0
-        version: 4.8.0
-    devDependencies:
-      '@types/node':
-        specifier: ^20.8.6
-        version: 20.8.6
-      eslint:
-        specifier: ^8.48.0
-        version: 8.48.0
-      eslint-config-neon:
-        specifier: ^0.1.57
-        version: 0.1.57(eslint@8.48.0)(typescript@5.2.2)
-      eslint-formatter-pretty:
-        specifier: ^5.0.0
-        version: 5.0.0
-      prettier:
-        specifier: ^3.0.3
-        version: 3.0.3
-      tsx:
-        specifier: ^3.13.0
-        version: 3.13.0
-      turbo:
-        specifier: ^1.10.15
-        version: 1.10.15
-      typescript:
-        specifier: ^5.2.2
-        version: 5.2.2
-
   packages/framework:
     dependencies:
-      '@yuikigai/structures':
+      '@lawgbot/structures':
         specifier: workspace:^
         version: link:../structures
+      '@lawgbot/utils':
+        specifier: workspace:^
+        version: link:../utils
       discord-api-types:
         specifier: ^0.37.60
         version: 0.37.60
@@ -260,9 +266,12 @@ importers:
       '@fastify/rate-limit':
         specifier: ^8.0.3
         version: 8.0.3
-      '@yuikigai/framework':
+      '@lawgbot/framework':
         specifier: workspace:^
         version: link:../framework
+      '@lawgbot/utils':
+        specifier: workspace:^
+        version: link:../utils
       discord-api-types:
         specifier: ^0.37.60
         version: 0.37.60
@@ -321,7 +330,7 @@ importers:
       '@discordjs/formatters':
         specifier: ^0.3.2
         version: 0.3.2
-      '@yuikigai/utils':
+      '@lawgbot/utils':
         specifier: workspace:^
         version: link:../utils
       discord-api-types:
