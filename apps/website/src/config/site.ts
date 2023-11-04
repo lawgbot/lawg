@@ -1,3 +1,4 @@
+import { LAWG_GITHUB_URL } from '@lawgbot/utils';
 import type { SiteConfig } from '~/types';
 
 export const siteConfig: SiteConfig = {
@@ -5,6 +6,6 @@ export const siteConfig: SiteConfig = {
 	description: 'lawg bot website',
 	url: 'http://localhost:3000',
 	links: {
-		github: 'https://github.com/lawgbot/lawg',
+		github: LAWG_GITHUB_URL,
 	},
 };

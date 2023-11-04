@@ -2,6 +2,7 @@ import { cookies } from 'next/headers';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { env } from '~/env.mjs';
+import { DISCORD_OAUTH_COOKIES_KEY } from '~/util/constants';
 
 export async function GET(req: NextRequest) {
 	const { searchParams } = new URL(req.url);
@@ -25,7 +26,7 @@ export async function GET(req: NextRequest) {
 
 	const json = await data.json();
 
-	cookieStore.set('lawg-auth-session', json.access_token, {
+	cookieStore.set(DISCORD_OAUTH_COOKIES_KEY, json.access_token, {
 		maxAge: json.expires_in,
 		path: '/',
 		httpOnly: true,
@@ -33,6 +34,6 @@ export async function GET(req: NextRequest) {
 	});
 
 	return NextResponse.redirect(
-		new URL('/dashboard', process.env.NODE_ENV === 'development' ? `https://${req.headers.get('host')}` : req.url),
+		new URL('/dashboard', env.NODE_ENV === 'development' ? `https://${req.headers.get('host')}` : req.url),
 	);
 }

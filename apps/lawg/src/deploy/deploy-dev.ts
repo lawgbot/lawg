@@ -1,4 +1,4 @@
-import { BotCommand, DevCommand } from '../interactions/index.js';
+import { BotCommand, DevCommand } from '~/interactions/index.js';
 import { deploy } from './deploy.js';
 
 void deploy(

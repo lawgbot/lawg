@@ -1,5 +1,5 @@
 import { Analytics } from '@vercel/analytics/react';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter as FontSans } from 'next/font/google';
 import type { PropsWithChildren } from 'react';
 import { siteConfig } from '~/config/site';
@@ -14,6 +14,20 @@ const fontSans = FontSans({
 	variable: '--font-sans',
 });
 
+export const viewport: Viewport = {
+	minimumScale: 1,
+	initialScale: 1,
+	width: 'device-width',
+	themeColor: [
+		{
+			media: '(prefers-color-scheme: light)',
+			color: 'light',
+		},
+		{ media: '(prefers-color-scheme: dark)', color: 'black' },
+	],
+	colorScheme: 'light dark',
+};
+
 export const metadata: Metadata = {
 	metadataBase: new URL(env.NEXT_PUBLIC_LOCAL_DEV ? 'http://localhost:3000' : siteConfig.url),
 	title: {
@@ -21,11 +35,6 @@ export const metadata: Metadata = {
 		template: `%s | ${siteConfig.name}`,
 	},
 	description: siteConfig.description,
-	viewport: {
-		minimumScale: 1,
-		initialScale: 1,
-		width: 'device-width',
-	},
 	icons: {
 		other: [
 			{
@@ -59,14 +68,6 @@ export const metadata: Metadata = {
 		},
 	],
 	creator: 'Nicolas Ribeiro',
-	themeColor: [
-		{
-			media: '(prefers-color-scheme: light)',
-			color: 'light',
-		},
-		{ media: '(prefers-color-scheme: dark)', color: 'black' },
-	],
-	colorScheme: 'light dark',
 	appleWebApp: {
 		title: siteConfig.name,
 	},

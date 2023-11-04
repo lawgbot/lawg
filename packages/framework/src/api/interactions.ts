@@ -1,6 +1,6 @@
 import { Interaction } from '@lawgbot/structures';
 import type { APIInteraction, APIInteractionResponseCallbackData, Snowflake } from 'discord-api-types/v10';
-import { InteractionResponseType } from 'discord-api-types/v10';
+import { InteractionResponseType, MessageFlags } from 'discord-api-types/v10';
 import type { FastifyReply } from 'fastify';
 import type { WebhooksAPI } from './webhook.js';
 
@@ -30,7 +30,7 @@ export class InteractionsAPI extends Interaction {
 		await this.response.status(200).send({
 			type: InteractionResponseType.DeferredChannelMessageWithSource,
 			data: {
-				flags: ephemeral ? 1 << 6 : undefined,
+				flags: ephemeral ? MessageFlags.Ephemeral : undefined,
 			},
 		});
 	}
@@ -39,6 +39,6 @@ export class InteractionsAPI extends Interaction {
 	 * Edits the initial reply to an interaction
 	 */
 	public async editReply(callbackData: APIInteractionResponseCallbackData, messageId: Snowflake = '@original') {
-		return this.webhooks.editMessage(messageId, callbackData);
+		await this.webhooks.editMessage(messageId, callbackData);
 	}
 }

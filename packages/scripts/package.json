@@ -1,0 +1,68 @@
+{
+	"$schema": "https://json.schemastore.org/package.json",
+	"name": "@lawgbot/scripts",
+	"version": "0.1.0",
+	"description": "A set of scripts that we use for our workflows",
+	"private": true,
+	"scripts": {
+		"build": "tsc --noEmit && tsup",
+		"dev": "tsup --watch --clean",
+		"lint": "prettier --check . && cross-env TIMING=1 eslint --format=pretty src turbo",
+		"format": "prettier --write . && cross-env TIMING=1 eslint --fix --format=pretty src turbo"
+	},
+	"exports": {
+		".": {
+			"require": {
+				"types": "./dist/index.d.ts",
+				"default": "./dist/index.js"
+			},
+			"import": {
+				"types": "./dist/index.d.mts",
+				"default": "./dist/index.mjs"
+			}
+		}
+	},
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"directories": {
+		"lib": "src",
+		"example": "turbo"
+	},
+	"files": [
+		"dist"
+	],
+	"contributors": [
+		"Nicolas Ribeiro <git@niskii.dev>",
+		"Davi Patricio <davipatricio2006@gmail.com>"
+	],
+	"license": "Apache-2.0",
+	"keywords": [],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/lawgbot/lawg.git",
+		"directory": "packages/scripts"
+	},
+	"bugs": {
+		"url": "https://github.com/lawgbot/lawg/issues"
+	},
+	"devDependencies": {
+		"@turbo/gen": "^1.10.16",
+		"@types/node": "^20.8.10",
+		"cross-env": "^7.0.3",
+		"eslint": "^8.53.0",
+		"eslint-config-neon": "^0.1.57",
+		"eslint-formatter-pretty": "^6.0.0",
+		"prettier": "^3.0.3",
+		"terser": "^5.24.0",
+		"tsup": "^7.2.0",
+		"turbo": "^1.10.16",
+		"typescript": "^5.2.2"
+	},
+	"engines": {
+		"node": ">=16.11.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}

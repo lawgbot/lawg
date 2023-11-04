@@ -1,6 +1,6 @@
 import type { ContextParam, ArgsParam } from '@lawgbot/framework';
 import { Command } from '@lawgbot/framework';
-import type { DevCommand } from '../../interactions/index.js';
+import type { DevCommand } from '~/interactions/index.js';
 import { evalCommand } from './subcommands/eval.js';
 
 export default class extends Command<typeof DevCommand> {

@@ -7,8 +7,9 @@
 		"test": "vitest run",
 		"dev": "tsup --watch --clean",
 		"build": "tsc --noEmit && tsup",
-		"lint": "prettier --check . && eslint --format=pretty src",
-		"format": "prettier --write . && eslint --fix --format=pretty src"
+		"lint": "prettier --check . && cross-env TIMING=1 eslint --format=pretty src __tests__",
+		"format": "prettier --write . && cross-env TIMING=1 eslint --fix --format=pretty src __tests__",
+		"fmt": "pnpm run format"
 	},
 	"exports": {
 		".": {
@@ -34,7 +35,7 @@
 	],
 	"contributors": [
 		"Nicolas Ribeiro <git@niskii.dev>",
-		"Davi Patricio <davipatricio@pm.me>"
+		"Davi Patricio <davipatricio2006@gmail.com>"
 	],
 	"license": "Apache-2.0",
 	"keywords": [],
@@ -47,24 +48,26 @@
 		"url": "https://github.com/lawgbot/lawg/issues"
 	},
 	"dependencies": {
+		"@discordjs/rest": "^2.0.1",
 		"@lawgbot/structures": "workspace:^",
 		"@lawgbot/utils": "workspace:^",
-		"discord-api-types": "^0.37.60",
-		"pino": "^8.16.0",
+		"discord-api-types": "^0.37.62",
+		"pino": "^8.16.1",
 		"tsyringe": "^4.8.0"
 	},
 	"devDependencies": {
-		"@prisma/client": "^5.4.2",
-		"@types/node": "^20.8.6",
-		"eslint": "^8.48.0",
+		"@prisma/client": "^5.5.2",
+		"@types/node": "^20.8.10",
+		"cross-env": "^7.0.3",
+		"eslint": "^8.53.0",
 		"eslint-config-neon": "^0.1.57",
-		"eslint-formatter-pretty": "^5.0.0",
-		"fastify": "^4.24.1",
+		"eslint-formatter-pretty": "^6.0.0",
+		"fastify": "^4.24.3",
 		"ioredis": "^5.3.2",
 		"prettier": "^3.0.3",
-		"prisma": "^5.4.2",
+		"prisma": "^5.5.2",
 		"tsup": "^7.2.0",
-		"turbo": "^1.10.15",
+		"turbo": "^1.10.16",
 		"typescript": "^5.2.2",
 		"vitest": "^0.34.6"
 	},

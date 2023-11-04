@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import type { Command } from '~/types/command';
 
 export const metadata: Metadata = {
 	title: 'Commands',
@@ -7,26 +6,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-	const commandsData = await fetch('http://127.0.0.1:4001/api/commands', {
-		next: {
-			revalidate: 3_600,
-		},
-	});
-
-	const { data } = await commandsData.json();
-
-	const commandsFragment = data.map((command: Command) => {
-		return <div>{command.name}</div>;
-	});
-
 	return (
-		<div className="mx-auto px-4 lg:max-w-full">
-			<div className="relative mx-auto gap-6 lg:max-w-full lg:flex">
-				<div className="lg:sticky lg:top-23 lg:h-[calc(100vh_-_145px)]" />
-				<div className="container mx-auto py-12 max-w-5xl min-w-xs w-full pb-10">
-					<div className="flex flex-col gap-4">{commandsFragment}</div>
-				</div>
-			</div>
+		<div className="flex min-h-screen flex-col space-y-6">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae perspiciatis error facilis quaerat inventore
+			numquam temporibus omnis, nemo aliquam dolore. Deserunt modi eligendi voluptatum, laboriosam sit neque perferendis
+			ratione illo.
 		</div>
 	);
 }

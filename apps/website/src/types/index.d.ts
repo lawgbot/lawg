@@ -1,8 +1,9 @@
 import type dynamicIconImports from 'lucide-react/dynamicIconImports';
+import type { Route } from 'next';
 
 export interface NavItem {
 	disabled?: boolean;
-	href: string;
+	href: Route;
 	title: string;
 }
 
@@ -15,11 +16,11 @@ export type SidebarNavItem = {
 	title: string;
 } & (
 	| {
-			href: string;
+			href: Route;
 			items?: never;
 	  }
 	| {
-			href?: string;
+			href?: Route;
 			items: NavLink[];
 	  }
 );

@@ -4,10 +4,10 @@ import type { APIUser } from 'discord-api-types/v10';
 import { Avatar, AvatarImage } from '../ui/avatar';
 
 interface UserAvatarProps extends AvatarProps {
-	readonly user: Pick<APIUser, 'avatar' | 'discriminator' | 'id' | 'username'>;
+	readonly user: APIUser;
 }
 
-function parseAvatarURL(user: UserAvatarProps['user']) {
+function parseAvatarURL(user: APIUser) {
 	if (!user.avatar) {
 		const index =
 			user.discriminator === '0' ? calculateUserDefaultAvatarIndex(user.id) : Number(user.discriminator!) % 5;

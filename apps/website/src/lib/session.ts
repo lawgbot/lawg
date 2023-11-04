@@ -2,6 +2,7 @@ import type { APIUser } from 'discord-api-types/v10';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { env } from '~/env.mjs';
+import { DISCORD_OAUTH_COOKIES_KEY } from '~/util/constants';
 
 export const DISCORD_OAUTH2_URL = `https://discord.com/api/oauth2/authorize?client_id=${
 	env.NEXT_PUBLIC_DISCORD_CLIENT_ID
@@ -12,7 +13,7 @@ export const DISCORD_OAUTH2_URL = `https://discord.com/api/oauth2/authorize?clie
 export function getCurrentToken() {
 	const cookieStore = cookies();
 
-	const token = cookieStore.get('lawg-auth-session');
+	const token = cookieStore.get(DISCORD_OAUTH_COOKIES_KEY);
 
 	if (!token) {
 		redirect(DISCORD_OAUTH2_URL);

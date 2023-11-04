@@ -1,4 +1,4 @@
 /**
- * The base Discord API URL.
+ * The Lawg github repository URL.
  */
-export const DISCORD_API_URL = 'https://discord.com/api/v10';
+export const LAWG_GITHUB_URL = 'https://github.com/lawgbot/lawg';

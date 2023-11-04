@@ -2,14 +2,15 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { HTMLAttributes } from 'react';
 import { cn } from '~/lib/util';
 import type { SidebarNavItem } from '~/types';
 
-interface DashboardNavProps {
-	readonly items: SidebarNavItem[];
+interface NavProps extends HTMLAttributes<HTMLAnchorElement> {
+	readonly items?: SidebarNavItem[];
 }
 
-export function DashboardNav({ items }: DashboardNavProps) {
+export function Nav({ items, ...props }: NavProps) {
 	const path = usePathname();
 
 	if (!items?.length) {
@@ -17,7 +18,7 @@ export function DashboardNav({ items }: DashboardNavProps) {
 	}
 
 	return (
-		<nav className="grid items-start gap-2">
+		<nav className="grid items-start gap-2" {...props}>
 			{items.map((item, idx) => {
 				return (
 					item.href && (

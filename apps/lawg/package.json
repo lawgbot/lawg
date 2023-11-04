@@ -4,13 +4,14 @@
 	"version": "0.1.0",
 	"description": "",
 	"scripts": {
+		"start": "node dist/index.js",
 		"build": "tsc -p tsconfig.json",
 		"dev": "tsx --watch src/index.ts",
-		"deploy-dev": "node dist/deploy/deploy-dev.js",
-		"deploy-global": "node dist/deploy/deploy-global.js",
-		"start": "node dist/index.js",
-		"lint": "prettier --check . && eslint --format=pretty src",
-		"format": "prettier --write . && eslint --fix --format=pretty src"
+		"deploy:dev": "node dist/deploy/deploy-dev.js",
+		"deploy:global": "node dist/deploy/deploy-global.js",
+		"lint": "prettier --check . && cross-env TIMING=1 eslint --format=pretty src",
+		"format": "prettier --write . && cross-env TIMING=1 eslint --fix --format=pretty src",
+		"fmt": "pnpm run format"
 	},
 	"type": "module",
 	"main": "./dist/index.js",
@@ -23,7 +24,7 @@
 	],
 	"contributors": [
 		"Nicolas Ribeiro <git@niskii.dev>",
-		"Davi Patricio <davipatricio@pm.me>"
+		"Davi Patricio <davipatricio2006@gmail.com>"
 	],
 	"license": "Apache-2.0",
 	"keywords": [],
@@ -40,20 +41,22 @@
 		"@lawgbot/framework": "workspace:^",
 		"@lawgbot/http": "workspace:^",
 		"@lawgbot/utils": "workspace:^",
-		"discord-api-types": "^0.37.60",
+		"@t3-oss/env-core": "^0.7.1",
+		"discord-api-types": "^0.37.62",
 		"dotenv": "^16.3.1",
 		"readdirp": "^3.6.0",
 		"reflect-metadata": "^0.1.13",
-		"tsyringe": "^4.8.0"
+		"zod": "^3.22.4"
 	},
 	"devDependencies": {
-		"@types/node": "^20.8.6",
-		"eslint": "^8.48.0",
+		"@types/node": "^20.8.10",
+		"cross-env": "^7.0.3",
+		"eslint": "^8.53.0",
 		"eslint-config-neon": "^0.1.57",
-		"eslint-formatter-pretty": "^5.0.0",
+		"eslint-formatter-pretty": "^6.0.0",
 		"prettier": "^3.0.3",
-		"tsx": "^3.13.0",
-		"turbo": "^1.10.15",
+		"tsx": "^3.14.0",
+		"turbo": "^1.10.16",
 		"typescript": "^5.2.2"
 	},
 	"engines": {

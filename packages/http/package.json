@@ -5,9 +5,10 @@
 	"description": "",
 	"scripts": {
 		"build": "tsc --noEmit && tsup",
-		"dev": "tsup --watch --clean",
-		"lint": "prettier --check . && eslint --format=pretty src",
-		"format": "prettier --write . && eslint --fix --format=pretty src"
+		"dev": "tsup --watch",
+		"lint": "prettier --check . && cross-env TIMING=1 eslint --format=pretty src __tests__",
+		"format": "prettier --write . && cross-env TIMING=1 eslint --fix --format=pretty src __tests__",
+		"fmt": "pnpm run format"
 	},
 	"exports": {
 		".": {
@@ -16,7 +17,7 @@
 				"default": "./dist/index.js"
 			},
 			"import": {
-				"types": "./dist/index.d.mts",
+				"types": "./dist/*.d.mts",
 				"default": "./dist/index.mjs"
 			}
 		}
@@ -32,7 +33,7 @@
 	],
 	"contributors": [
 		"Nicolas Ribeiro <git@niskii.dev>",
-		"Davi Patricio <davipatricio@pm.me>"
+		"Davi Patricio <davipatricio2006@gmail.com>"
 	],
 	"license": "Apache-2.0",
 	"keywords": [],
@@ -45,27 +46,30 @@
 		"url": "https://github.com/lawgbot/lawg/issues"
 	},
 	"dependencies": {
+		"@discordjs/rest": "^2.0.1",
+		"@fastify/autoload": "^5.8.0",
+		"@fastify/compress": "^6.5.0",
 		"@fastify/rate-limit": "^8.0.3",
 		"@lawgbot/framework": "workspace:^",
 		"@lawgbot/utils": "workspace:^",
-		"discord-api-types": "^0.37.60",
+		"discord-api-types": "^0.37.62",
 		"discord-verify": "^1.2.0",
-		"fastify": "^4.24.1",
-		"fastify-metrics": "^10.3.2",
+		"fastify": "^4.24.3",
+		"fastify-metrics": "^10.3.3",
 		"fastify-raw-body": "^4.2.2",
 		"ioredis": "^5.3.2",
 		"prom-client": "^15.0.0",
-		"reflect-metadata": "^0.1.13",
-		"tsyringe": "^4.8.0"
+		"reflect-metadata": "^0.1.13"
 	},
 	"devDependencies": {
-		"@types/node": "^20.8.6",
-		"eslint": "^8.48.0",
+		"@types/node": "^20.8.10",
+		"cross-env": "^7.0.3",
+		"eslint": "^8.53.0",
 		"eslint-config-neon": "^0.1.57",
-		"eslint-formatter-pretty": "^5.0.0",
+		"eslint-formatter-pretty": "^6.0.0",
 		"prettier": "^3.0.3",
 		"tsup": "^7.2.0",
-		"turbo": "^1.10.15",
+		"turbo": "^1.10.16",
 		"typescript": "^5.2.2"
 	},
 	"engines": {

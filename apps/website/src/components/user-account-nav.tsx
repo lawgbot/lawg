@@ -23,15 +23,12 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger>
-				<User.Avatar
-					className="h-8 w-8"
-					user={{ avatar: user.avatar, discriminator: user.discriminator, id: user.id, username: user.username }}
-				/>
+				<User.Avatar className="h-8 w-8" user={{ ...user }} />
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end">
 				<div className="flex items-center justify-start gap-2 p-2">
 					<div className="flex flex-col space-y-1 leading-none">
-						<User.Tag globalName={user.global_name} discriminator={user.discriminator} username={user.username} />
+						<User.Tag user={{ ...user }} />
 					</div>
 				</div>
 				<DropdownMenuSeparator />

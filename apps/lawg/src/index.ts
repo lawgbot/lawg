@@ -2,7 +2,7 @@ import 'dotenv/config';
 import 'reflect-metadata';
 
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import type { Command } from '@lawgbot/framework';
+import type { Command, CommandMap } from '@lawgbot/framework';
 import {
 	commandInfo,
 	container,
@@ -11,11 +11,14 @@ import {
 	kCommands,
 	logger,
 	createPrisma,
+	createRedis,
 } from '@lawgbot/framework';
-import { HttpHandler } from '@lawgbot/http';
+import { bootstrap } from '@lawgbot/http';
 import readdirp from 'readdirp';
+import { env } from './util/env.js';
 
 await createPrisma();
+await createRedis();
 
 createCommands();
 
@@ -24,10 +27,8 @@ const commandFiles = readdirp(fileURLToPath(new URL('commands', import.meta.url)
 	directoryFilter: '!subcommands',
 });
 
-const http = new HttpHandler({ port: Number(process.env.HTTP_PORT), logger: process.env.NODE_ENV === 'development' });
-
 try {
-	const commands = container.resolve<Map<string, Command>>(kCommands);
+	const commands = container.resolve<CommandMap>(kCommands);
 
 	for await (const dir of commandFiles) {
 		const cmdInfo = commandInfo(dir.path);
@@ -48,10 +49,9 @@ try {
 		}
 	}
 
-	await http.listen();
-	logger.info(`Listening server on http://127.0.0.1:${process.env.HTTP_PORT}`);
+	await bootstrap();
+	logger.info(`Listening server on http://127.0.0.1:${env.HTTP_PORT}`);
 } catch (error_) {
 	const error = error_ as Error;
-	console.log(error);
 	logger.error(error, error.message);
 }

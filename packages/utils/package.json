@@ -6,8 +6,9 @@
 	"scripts": {
 		"build": "tsc --noEmit && tsup",
 		"dev": "tsup --watch --clean",
-		"lint": "prettier --check . && eslint --format=pretty src",
-		"format": "prettier --write . && eslint --fix --format=pretty src"
+		"lint": "prettier --check . && cross-env TIMING=1 eslint --format=pretty src __tests__",
+		"format": "prettier --write . && cross-env TIMING=1 eslint --fix --format=pretty src __tests__",
+		"fmt": "pnpm run format"
 	},
 	"exports": {
 		".": {
@@ -32,29 +33,30 @@
 	],
 	"contributors": [
 		"Nicolas Ribeiro <git@niskii.dev>",
-		"Davi Patricio <davipatricio@pm.me>"
+		"Davi Patricio <davipatricio2006@gmail.com>"
 	],
 	"license": "Apache-2.0",
 	"keywords": [],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/lawgbot/lawgbot.git",
+		"url": "https://github.com/lawgbot/lawg.git",
 		"directory": "packages/utils"
 	},
 	"bugs": {
-		"url": "https://github.com/lawgbot/lawgbot/issues"
+		"url": "https://github.com/lawgbot/lawg/issues"
 	},
 	"dependencies": {
-		"discord-api-types": "^0.37.60"
+		"discord-api-types": "^0.37.62"
 	},
 	"devDependencies": {
-		"@types/node": "^20.8.6",
-		"eslint": "^8.48.0",
+		"@types/node": "^20.8.10",
+		"cross-env": "^7.0.3",
+		"eslint": "^8.53.0",
 		"eslint-config-neon": "^0.1.57",
-		"eslint-formatter-pretty": "^5.0.0",
+		"eslint-formatter-pretty": "^6.0.0",
 		"prettier": "^3.0.3",
 		"tsup": "^7.2.0",
-		"turbo": "^1.10.15",
+		"turbo": "^1.10.16",
 		"typescript": "^5.2.2"
 	},
 	"engines": {

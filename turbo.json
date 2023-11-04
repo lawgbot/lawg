@@ -29,6 +29,21 @@
 			"outputs": ["dist/**/*"],
 			"outputMode": "errors-only"
 		},
+		"@lawgbot/scripts#build": {
+			"dependsOn": ["^build"],
+			"inputs": [
+				"src/**/*.ts",
+				"src/**/*.js",
+				"src/**/*.mjs",
+				"src/**/*.cjs",
+				"turbo/**/*",
+				"package.json",
+				"tsconfig.eslint.json",
+				"tsconfig.json"
+			],
+			"outputs": ["dist/**/*"],
+			"outputMode": "errors-only"
+		},
 		"@lawgbot/website#build": {
 			"dependsOn": ["^build"],
 			"env": ["NEXT_PUBLIC_LOCAL_DEV", "METADATA_BASE_URL"],
@@ -114,6 +129,10 @@
 			],
 			"outputs": [],
 			"outputMode": "errors-only"
+		},
+		"start": {
+			"dependsOn": ["^build"],
+			"cache": false
 		},
 		"dev": {
 			"cache": false,

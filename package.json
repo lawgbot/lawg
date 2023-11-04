@@ -4,6 +4,8 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
+		"start": "turbo run start --concurrency=4",
+		"start:bot": "turbo run start --filter=@lawgbot/lawg --concurrency=4",
 		"build": "pnpm -- turbo run build --concurrency=4",
 		"build:affected": "turbo run build --filter='...[origin/main]' --concurrency=4",
 		"test": "turbo run test --concurrency=4",
@@ -11,13 +13,16 @@
 		"lint:affected": "turbo run lint --filter='...[origin/main]' --concurrency=4",
 		"format": "turbo run format --concurrency=4",
 		"fmt": "turbo run format --concurrency=4",
-		"dev": "turbo run dev --filter=!@lawgbot/website --concurrency=4",
-		"prepare": "is-ci || husky install"
+		"dev": "turbo run dev --concurrency=4",
+		"prepare": "is-ci || husky install",
+		"update": "pnpm --recursive update --interactive",
+		"update:latest": "pnpm --recursive update --interactive --latest",
+		"create-package": "turbo gen create-package --args"
 	},
 	"type": "module",
 	"contributors": [
 		"Nicolas Ribeiro <git@niskii.dev>",
-		"Davi Patricio <davipatricio@pm.me>"
+		"Davi Patricio <davipatricio2006@gmail.com>"
 	],
 	"keywords": [],
 	"repository": {
@@ -28,15 +33,18 @@
 		"url": "https://github.com/lawgbot/lawg/issues"
 	},
 	"devDependencies": {
-		"@types/lodash.merge": "^4.6.7",
-		"eslint": "^8.51.0",
+		"@commitlint/cli": "^18.2.0",
+		"@commitlint/config-angular": "^18.1.0",
+		"@types/lodash.merge": "^4.6.8",
+		"eslint": "^8.53.0",
 		"eslint-config-neon": "^0.1.57",
 		"husky": "^8.0.3",
 		"is-ci": "^3.0.1",
+		"lint-staged": "^15.0.2",
 		"lodash.merge": "^4.6.2",
 		"prettier": "^3.0.3",
 		"tsup": "^7.2.0",
-		"turbo": "^1.10.15",
+		"turbo": "^1.10.16",
 		"typescript": "^5.2.2",
 		"vitest": "^0.34.6"
 	},

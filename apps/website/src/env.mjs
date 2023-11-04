@@ -5,6 +5,7 @@ export const env = createEnv({
 	server: {
 		DISCORD_CLIENT_SECRET: z.string().min(1),
 		DISCORD_BOT_TOKEN: z.string().min(1),
+		NODE_ENV: z.enum(['development', 'production', 'test']),
 	},
 	client: {
 		NEXT_PUBLIC_LOCAL_DEV: z.boolean(),
@@ -17,5 +18,6 @@ export const env = createEnv({
 		NEXT_PUBLIC_DISCORD_CALLBACK_URL: process.env.NEXT_PUBLIC_DISCORD_CALLBACK_URL,
 		DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
 		DISCORD_BOT_TOKEN: process.env.DISCORD_BOT_TOKEN,
+		NODE_ENV: process.env.NODE_ENV,
 	},
 });
