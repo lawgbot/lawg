@@ -1,4 +1,3 @@
-import type { Route } from 'next';
 import Link from 'next/link';
 import { buttonVariants } from '~/components/ui/button';
 import { siteConfig } from '~/config/site';
@@ -19,7 +18,7 @@ export default async function Page() {
 					</Link>
 
 					<Link
-						href={siteConfig.links.github as Route}
+						href={siteConfig.links.github}
 						target="_blank"
 						rel="noreferrer"
 						className={cn(buttonVariants({ variant: 'outline', size: 'lg' }))}

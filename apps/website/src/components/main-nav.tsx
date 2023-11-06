@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { useSelectedLayoutSegment } from 'next/navigation';
 import type { PropsWithChildren } from 'react';
 import { siteConfig } from '~/config/site';
-import { useNav } from '~/contexts/nav';
 import { cn } from '~/lib/util';
+import { useNav } from '~/state/nav';
 import type { MainNavItem } from '~/types';
 import { MobileNav } from './mobile-nav';
 import { Button } from './ui/button';
@@ -23,7 +23,8 @@ interface MainNavProps {
 }
 
 export function MainNav({ children, items }: PropsWithChildren<MainNavProps>) {
-	const { setOpened, opened } = useNav();
+	// eslint-disable-next-line @typescript-eslint/unbound-method
+	const { toggle, opened } = useNav();
 	const segment = useSelectedLayoutSegment();
 
 	return (
@@ -56,11 +57,7 @@ export function MainNav({ children, items }: PropsWithChildren<MainNavProps>) {
 					</NavigationMenuList>
 				</NavigationMenu>
 			) : null}
-			<Button
-				variant="ghost"
-				className="flex items-center space-x-2 md:hidden"
-				onClick={() => setOpened((open) => !open)}
-			>
+			<Button variant="ghost" className="flex items-center space-x-2 md:hidden" onClick={toggle}>
 				<Menu />
 			</Button>
 			{opened && items && <MobileNav items={items}>{children}</MobileNav>}

@@ -4,7 +4,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev -p 3001",
+		"dev": "next dev -p 3001 --turbo",
 		"build": "next build",
 		"start": "next start -p 3001",
 		"lint": "prettier --check . && cross-env TIMING=1 eslint --format=pretty src",
@@ -43,18 +43,19 @@
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.0.0",
 		"lucide-react": "^0.292.0",
-		"next": "^14.0.1",
+		"next": "14.0.2-canary.13",
 		"next-themes": "^0.2.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"tailwind-merge": "^2.0.0",
 		"tailwindcss-animate": "^1.0.7",
-		"zod": "^3.22.4"
+		"zod": "^3.22.4",
+		"zustand": "^4.4.6"
 	},
 	"devDependencies": {
 		"@next/bundle-analyzer": "^14.0.1",
 		"@types/node": "^20.8.10",
-		"@types/react": "^18.2.34",
+		"@types/react": "^18.2.35",
 		"@types/react-dom": "^18.2.14",
 		"autoprefixer": "^10",
 		"cross-env": "^7.0.3",

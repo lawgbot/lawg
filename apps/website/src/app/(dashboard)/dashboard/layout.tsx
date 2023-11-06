@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import type { PropsWithChildren } from 'react';
 import { MainNav } from '~/components/main-nav';
-import { Nav } from '~/components/nav';
+import { SidebarNav } from '~/components/sidebar-nav';
 import { SiteFooter } from '~/components/site-footer';
 import { UserAccountNav } from '~/components/user-account-nav';
 import { dashboardConfig } from '~/config/dashboard';
@@ -25,7 +25,7 @@ export default async function DashboardLayout({ children }: PropsWithChildren) {
 			</header>
 			<div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
 				<aside className="hidden w-[200px] flex-col md:flex">
-					<Nav items={dashboardConfig.sidebarNav} />
+					<SidebarNav items={dashboardConfig.sidebarNav} />
 				</aside>
 				<main className="flex w-full flex-1 flex-col overflow-hidden">{children}</main>
 			</div>

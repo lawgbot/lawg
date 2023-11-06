@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react';
 import { MainNav } from '~/components/main-nav';
-import { Nav } from '~/components/nav';
+import { SidebarNav } from '~/components/sidebar-nav';
 import { SiteFooter } from '~/components/site-footer';
 import { rootConfig } from '~/config/root';
 
@@ -15,7 +15,7 @@ export default async function CommandsLayout({ children }: PropsWithChildren) {
 			<div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
 				<aside className="hidden w-[200px] flex-col md:flex">
 					<nav className="grid items-start gap-2">
-						<Nav items={[]} />
+						<SidebarNav items={[]} />
 					</nav>
 				</aside>
 				<main className="flex w-full flex-1 flex-col overflow-hidden">

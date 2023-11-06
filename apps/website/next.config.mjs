@@ -9,9 +9,6 @@ const withBundleAnalyzer = bundleAnalyzer({
 export default withBundleAnalyzer({
 	reactStrictMode: true,
 	swcMinify: true,
-	experimental: {
-		typedRoutes: true,
-	},
 	images: {
 		dangerouslyAllowSVG: true,
 		contentDispositionType: 'attachment',

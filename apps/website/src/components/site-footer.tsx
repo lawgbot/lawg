@@ -1,4 +1,3 @@
-import type { Route } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { siteConfig } from '~/config/site';
@@ -32,7 +31,7 @@ export function SiteFooter({ className }: { readonly className?: string }) {
 						</Link>
 						. The source code is available on{' '}
 						<Link
-							href={siteConfig.links.github as Route}
+							href={siteConfig.links.github}
 							target="_blank"
 							rel="noreferrer"
 							className="font-medium underline underline-offset-4"
